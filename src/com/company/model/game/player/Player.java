@@ -12,7 +12,6 @@ public class Player implements SGObserver {
 
     @Override
     public void updateSGO(StateGame sg) {
-        System.out.println("player update");
-
+        //System.out.println("player update");
     }
 }

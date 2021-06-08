@@ -10,6 +10,7 @@ public class UI extends JFrame implements IGObserver {
 
     private final int wid = 500;
     private final int hgt = 500;
+    private final Keys keys;
 
 
     public static UI getUi() {
@@ -20,6 +21,8 @@ public class UI extends JFrame implements IGObserver {
     }
 
     private UI() {
+        keys = new Keys();
+        addKeyListener(keys);
         initUI();
     }
 

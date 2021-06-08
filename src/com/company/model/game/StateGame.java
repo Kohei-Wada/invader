@@ -4,23 +4,20 @@ import com.company.model.Model;
 import com.company.model.State;
 import com.company.model.game.invaders.InvadersManager;
 import com.company.model.game.player.Player;
-import com.company.model.gameover.StateGameOver;
 
 import java.util.ArrayList;
-import java.util.concurrent.CompletionStage;
 
 public class StateGame extends State {
 
     private final ArrayList<SGObserver> observers;
+    private Player player;
 
 
     public StateGame() {
         observers = new ArrayList<>();
-
-        new Player(this);
+        player = new Player(this);
         new InvadersManager(this);
     }
-
 
     public void addObserver(SGObserver sgo) {
         observers.add(sgo);

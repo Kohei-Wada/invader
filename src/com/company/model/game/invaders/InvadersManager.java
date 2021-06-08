@@ -12,6 +12,6 @@ public class InvadersManager implements SGObserver {
 
     @Override
     public void updateSGO(StateGame sg) {
-        System.out.println("invaders manager update");
+        //System.out.println("invaders manager update");
     }
 }
