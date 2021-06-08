@@ -8,7 +8,6 @@ import javax.swing.*;
 public class UI extends JFrame implements IGObserver {
     private static UI ui = null;
 
-    private InvaderGame game = null;
     private final int wid = 500;
     private final int hgt = 500;
 
@@ -20,11 +19,8 @@ public class UI extends JFrame implements IGObserver {
         return ui;
     }
 
-
     private UI() {
-        game = InvaderGame.getGame();
         initUI();
-
     }
 
     private void initUI() {
@@ -35,6 +31,13 @@ public class UI extends JFrame implements IGObserver {
         setVisible(true);
     }
 
+    public int getWid() {
+        return wid;
+    }
+
+    public int getHgt() {
+        return hgt;
+    }
 
     @Override
     public void observerUpdate() {
