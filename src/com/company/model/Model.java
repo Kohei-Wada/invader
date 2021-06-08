@@ -4,12 +4,16 @@ import com.company.IGObserver;
 import com.company.InvaderGame;
 import com.company.model.game.StateGame;
 import com.company.model.gameover.StateGameOver;
+import com.company.ui.Keys;
+
+import java.security.Key;
 
 public class Model implements IGObserver {
 
     private static Model model = new Model();
     private State state;
     private  Result result;
+    private Keys keys;
 
     public static Model getModel() {
         if (model == null) {
@@ -19,7 +23,7 @@ public class Model implements IGObserver {
     }
 
     private Model() {
-        state = new StateGame();
+        setCurrentState(new StateGame(this));
     }
 
     public State getCurrentState() {
@@ -36,6 +40,15 @@ public class Model implements IGObserver {
 
     public Result getResult(Result r) {
         return r;
+    }
+
+    public Keys getKeys() {
+        return keys;
+    }
+
+    public void setKeys(Keys k) {
+        keys = k;
+        state.setKeys(k);
     }
 
     @Override

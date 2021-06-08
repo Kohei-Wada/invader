@@ -1,11 +1,17 @@
 package com.company;
 
+import com.company.model.Model;
+import com.company.ui.UI;
+
 import java.util.ArrayList;
 
 public class InvaderGame {
     private static InvaderGame game = new InvaderGame();
     private ArrayList<IGObserver> observers = null;
     private boolean active = false;
+
+    private Model model;
+    private UI ui;
 
     public static InvaderGame getGame() {
         if (game == null)
@@ -15,7 +21,7 @@ public class InvaderGame {
 
     private InvaderGame() {
         observers = new ArrayList<>();
-        gameStart();
+        gameInit();
     }
 
     public void addObserver(IGObserver o) {
@@ -32,7 +38,10 @@ public class InvaderGame {
         }
     }
 
-    public void gameStart() {
+    public void gameInit() {
+        model = Model.getModel();
+        ui = UI.getUi();
+        model.setKeys(ui.getKeys());
         active = true;
     }
 
