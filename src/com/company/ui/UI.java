@@ -1,9 +1,11 @@
-package com.company;
+package com.company.ui;
 
-import javax.imageio.plugins.tiff.ExifGPSTagSet;
+import com.company.IGObserver;
+import com.company.InvaderGame;
+
 import javax.swing.*;
 
-public class UI extends JFrame implements IGObserver{
+public class UI extends JFrame implements IGObserver {
     private static UI ui = null;
 
     private InvaderGame game = null;

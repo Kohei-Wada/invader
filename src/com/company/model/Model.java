@@ -1,6 +1,8 @@
-package com.company;
+package com.company.model;
 
-public class Model implements IGObserver{
+import com.company.IGObserver;
+
+public class Model implements IGObserver {
 
     private static Model model = null;
 

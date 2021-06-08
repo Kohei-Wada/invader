@@ -1,5 +1,8 @@
 package com.company;
 
+import com.company.model.Model;
+import com.company.ui.UI;
+
 public class Main {
 
     public static void main(String[] args) {
