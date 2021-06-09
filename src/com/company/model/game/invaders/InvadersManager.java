@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class InvadersManager implements SGObserver {
 
-    private ArrayList<Invaders> allInvaders;
+    private final ArrayList<Invaders> allInvaders;
 
     public InvadersManager(StateGame sg) {
         sg.addObserver(this);
@@ -23,7 +23,6 @@ public class InvadersManager implements SGObserver {
 
     @Override
     public void updateSGO(StateGame sg) {
-        //System.out.println("invaders manager update");
         allInvaders.forEach(Invaders::updateInvaders);
     }
 }

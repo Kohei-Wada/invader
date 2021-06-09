@@ -1,10 +1,9 @@
 package com.company.model.game.invaders;
 
 public class NormalInvaders extends Invaders{
+
     @Override
     public void updateInvaders() {
-        System.out.println("update normal invaders");
-
     }
 }
 

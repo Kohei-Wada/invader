@@ -12,20 +12,18 @@ import java.util.ArrayList;
 public class StateGame extends State {
 
     private final ArrayList<SGObserver> observers;
-
+    private final Player player;
 
     public StateGame(Model m) {
         super(m);
         observers = new ArrayList<>();
-
-        new Player(this);
+        player = new Player(this);
         new InvadersManager(this);
     }
 
     public void addObserver(SGObserver sgo) {
         observers.add(sgo);
     }
-
     public void removeObserver(SGObserver sgo) {
         observers.remove(sgo);
     }
@@ -33,9 +31,10 @@ public class StateGame extends State {
     @Override
     public void stateUpdate(Model model) {
         parseKey();
+
         observers.forEach(v -> v.updateSGO(this));
         try {
-            Thread.sleep(100);
+            Thread.sleep(33);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -45,9 +44,16 @@ public class StateGame extends State {
     public void parseKey() {
         if (keys.isPressed(KeyEvent.VK_Q)) {
             setStateActive(false);
-
             model.setCurrentState(new StateGameOver(model));
         }
 
+        if (keys.isPressed(KeyEvent.VK_LEFT))
+            player.addX(-8);
+        if (keys.isPressed(KeyEvent.VK_RIGHT))
+            player.addX(8);
+        if (keys.isPressed(KeyEvent.VK_UP))
+            player.addY(-8);
+        if (keys.isPressed(KeyEvent.VK_DOWN))
+            player.addY(8);
     }
 }
