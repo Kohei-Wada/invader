@@ -6,8 +6,8 @@ import com.company.model.game.invaders.InvadersManager;
 import com.company.model.game.player.Player;
 import com.company.model.gameover.StateGameOver;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.concurrent.CompletionStage;
 
 public class StateGame extends State {
 
@@ -22,7 +22,6 @@ public class StateGame extends State {
         new InvadersManager(this);
     }
 
-
     public void addObserver(SGObserver sgo) {
         observers.add(sgo);
     }
@@ -31,23 +30,24 @@ public class StateGame extends State {
         observers.remove(sgo);
     }
 
-
     @Override
     public void stateUpdate(Model model) {
+        parseKey();
+        observers.forEach(v -> v.updateSGO(this));
         try {
-            parseKey();
             Thread.sleep(100);
-            observers.forEach(v -> v.updateSGO(this));
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     @Override
     public void parseKey() {
+        if (keys.isPressed(KeyEvent.VK_Q)) {
+            setStateActive(false);
+
+            model.setCurrentState(new StateGameOver(model));
+        }
 
     }
 }
