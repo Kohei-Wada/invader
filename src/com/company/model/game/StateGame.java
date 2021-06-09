@@ -14,7 +14,8 @@ public class StateGame extends State {
     private final ArrayList<SGObserver> observers;
 
 
-    public StateGame() {
+    public StateGame(Model m) {
+        super(m);
         observers = new ArrayList<>();
 
         new Player(this);
@@ -34,6 +35,7 @@ public class StateGame extends State {
     @Override
     public void stateUpdate(Model model) {
         try {
+            parseKey();
             Thread.sleep(100);
             observers.forEach(v -> v.updateSGO(this));
 
@@ -41,6 +43,11 @@ public class StateGame extends State {
             e.printStackTrace();
         }
 
+
+    }
+
+    @Override
+    public void parseKey() {
 
     }
 }
