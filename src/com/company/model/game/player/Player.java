@@ -15,7 +15,7 @@ public class Player implements SGObserver {
 
     private final Graphics g;
     private final int stageX, stageY;
-    private PlayerBullets playerBullets;
+    private final PlayerBullets playerBullets;
 
 
     public Player(StateGame sg) {

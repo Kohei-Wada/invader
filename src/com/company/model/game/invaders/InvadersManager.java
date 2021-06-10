@@ -20,7 +20,13 @@ public class InvadersManager implements SGObserver {
         sg.addObserver(this);
         allInvaders = new ArrayList<>();
         bulletsManager = sg.getBulletsManager();
-        addInvaders(new NormalInvaders(this));
+
+        initAllInvaders();
+    }
+
+    private void initAllInvaders() {
+        new NormalInvaders(this);
+
     }
 
     public boolean invaderIsDead(PlayerBullet b) {
@@ -32,7 +38,7 @@ public class InvadersManager implements SGObserver {
         return false;
     }
 
-    private void addInvaders(Invaders i) {
+    public void addInvaders(Invaders i) {
         allInvaders.add(i);
     }
 

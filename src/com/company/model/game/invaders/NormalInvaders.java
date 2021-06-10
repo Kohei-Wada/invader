@@ -19,7 +19,11 @@ public class NormalInvaders extends Invaders{
         sizeX = ui.getWid();
         sizeY = ui.getHgt();
 
+        //test
         addInvader(100, 100);
+        addInvader(400, 100);
+
+        manager.addInvaders(this);
     }
 
     public int getSizeX() {
