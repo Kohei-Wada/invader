@@ -21,7 +21,6 @@ public class StateGame extends State {
         super(m);
         observers = new ArrayList<>();
 
-
         /*
         program will die if you make a mistake
         in the initialization order

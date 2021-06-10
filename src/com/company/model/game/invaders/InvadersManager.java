@@ -6,6 +6,7 @@ import com.company.model.game.StateGame;
 import com.company.model.game.bullets.Bullet;
 import com.company.model.game.bullets.BulletsManager;
 import com.company.model.game.bullets.PlayerBullet;
+import com.company.model.game.player.Player;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,15 @@ public class InvadersManager implements SGObserver {
     private void initAllInvaders() {
         new NormalInvaders(this);
 
+    }
+
+    public boolean invaderHitsPlayer(Player p) {
+        for (Invaders i : allInvaders) {
+            if (i.invaderHitPlayer(p)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean invaderIsDead(PlayerBullet b) {

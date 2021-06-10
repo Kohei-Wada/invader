@@ -1,6 +1,7 @@
 package com.company.model.game.invaders;
 
 import com.company.model.game.bullets.PlayerBullet;
+import com.company.model.game.player.Player;
 import com.company.ui.UI;
 
 import java.awt.*;
@@ -44,6 +45,16 @@ public class NormalInvaders extends Invaders{
         for (NormalInvader i : normalInvaders) {
             if (i.isDead(b)) {
                 removeInvader(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean invaderHitPlayer(Player p) {
+        for (NormalInvader i : normalInvaders) {
+            if (i.hitPlayer(p)) {
                 return true;
             }
         }
@@ -94,5 +105,14 @@ class NormalInvader extends Invader{
         int bx = b.getX();
         int by = b.getY();
         return bx >= x && bx <= x + 30 && by >= y && by <= y + 20;
+    }
+
+    @Override
+    public boolean hitPlayer(Player p) {
+        int px = p.getX();
+        int py = p.getY();
+
+        return (x >= px && x <= px + 30 && y >= py && y <= py + 20) ||
+                (x + 30 >= px && x + 30 <= px + 30 && y + 20 >= py && y + 20 <= py + 20);
     }
 }
