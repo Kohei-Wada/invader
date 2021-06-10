@@ -3,22 +3,41 @@ package com.company.model.game.invaders;
 import com.company.InvaderGame;
 import com.company.model.game.SGObserver;
 import com.company.model.game.StateGame;
+import com.company.model.game.bullets.Bullet;
+import com.company.model.game.bullets.BulletsManager;
+import com.company.model.game.bullets.PlayerBullet;
 
 import java.util.ArrayList;
 
 public class InvadersManager implements SGObserver {
 
     private final ArrayList<Invaders> allInvaders;
+    private final BulletsManager bulletsManager;
+
+
 
     public InvadersManager(StateGame sg) {
         sg.addObserver(this);
         allInvaders = new ArrayList<>();
+        bulletsManager = sg.getBulletsManager();
+        addInvaders(new NormalInvaders(this));
+    }
 
-        addInvaders(new NormalInvaders());
+    public boolean invaderIsDead(PlayerBullet b) {
+        for (Invaders i : allInvaders) {
+            if (i.invaderIsDead(b)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void addInvaders(Invaders i) {
         allInvaders.add(i);
+    }
+
+    public BulletsManager getBulletsManager() {
+        return bulletsManager;
     }
 
     @Override
