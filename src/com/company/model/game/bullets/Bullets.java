@@ -1,5 +1,8 @@
 package com.company.model.game.bullets;
 
+import com.company.model.game.player.Player;
+
 public interface Bullets {
-    void updateBullets();
+    public void updateBullets();
+    public boolean bulletHitPlayer(Player p);
 }

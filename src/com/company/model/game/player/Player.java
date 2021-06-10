@@ -64,10 +64,14 @@ public class Player implements SGObserver {
         playerBullets.addPlayerBullet(x + 12, y);
     }
 
+    public boolean isDead() {
+        return dead;
+    }
+
     @Override
     public void updateSGO(StateGame sg) {
         if (invadersManager.invaderHitsPlayer(this)) {
-            System.out.println("player hit to invader");
+            dead = true;
         }
 
         drawPlayer();

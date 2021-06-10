@@ -47,14 +47,21 @@ public class StateGame extends State {
 
     @Override
     public void stateUpdate(Model model) {
-        parseKey();
 
-        observers.forEach(v -> v.updateSGO(this));
+        if (!player.isDead()) {
+            parseKey();
+            observers.forEach(v -> v.updateSGO(this));
+        }
+        else {
+            model.setCurrentState(new StateGameOver(model));
+        }
+
         try {
             Thread.sleep(33);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     @Override

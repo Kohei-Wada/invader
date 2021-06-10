@@ -1,8 +1,8 @@
 package com.company.model.game.bullets;
 
 import com.company.model.game.invaders.InvadersManager;
+import com.company.model.game.player.Player;
 
-import javax.swing.*;
 import java.util.LinkedList;
 
 public class PlayerBullets extends LinkedList<PlayerBullet> implements Bullets{
@@ -40,6 +40,12 @@ public class PlayerBullets extends LinkedList<PlayerBullet> implements Bullets{
         checkInvaderIsDead();
         forEach(PlayerBullet::updateBullet);
         deleteBullets();
+    }
+
+    //Never used method
+    @Override
+    public boolean bulletHitPlayer(Player p) {
+        return false;
     }
 
     public void addPlayerBullet(int x, int y) {

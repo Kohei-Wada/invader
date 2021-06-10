@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class PlayerBullet extends Bullet {
 
-    Graphics g;
+    private final Graphics g;
 
     public PlayerBullet(int x, int y) {
         super(x, y);

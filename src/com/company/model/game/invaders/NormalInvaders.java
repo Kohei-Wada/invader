@@ -1,5 +1,6 @@
 package com.company.model.game.invaders;
 
+import com.company.model.game.bullets.NormalInvaderBullets;
 import com.company.model.game.bullets.PlayerBullet;
 import com.company.model.game.player.Player;
 import com.company.ui.UI;
@@ -11,10 +12,13 @@ public class NormalInvaders extends Invaders{
     private final Graphics g;
     private final LinkedList<NormalInvader> normalInvaders;
 
+    private final NormalInvaderBullets normalInvaderBullets;
+
     private final int sizeX, sizeY;
 
     public NormalInvaders(InvadersManager manager) {
         normalInvaders = new LinkedList<>();
+        normalInvaderBullets = new NormalInvaderBullets();
         UI ui = UI.getUi();
         g = ui.graphic();
         sizeX = ui.getWid();
@@ -25,6 +29,9 @@ public class NormalInvaders extends Invaders{
         addInvader(400, 100);
 
         manager.addInvaders(this);
+        manager.getBulletsManager().addBullets(normalInvaderBullets);
+
+
     }
 
     public int getSizeX() {
@@ -72,23 +79,35 @@ public class NormalInvaders extends Invaders{
     public void removeInvader(NormalInvader i) {
         normalInvaders.remove(i);
     }
+
+    public NormalInvaderBullets getNormalInvaderBullets() {
+        return normalInvaderBullets;
+    }
 }
 
 
 class NormalInvader extends Invader{
     private final Graphics g;
     private final NormalInvaders invaders;
+    private final NormalInvaderBullets normalInvaderBullets;
 
     public NormalInvader(int x, int y, NormalInvaders invaders) {
+        this.normalInvaderBullets = invaders.getNormalInvaderBullets();
         this.invaders = invaders;
         this.x = x;
         this.y = y;
         this.g = invaders.graphics();
+
+    }
+
+    private void firingBullet() {
+        normalInvaderBullets.addNormalInvaderBullet(x + 12, y);
     }
 
     @Override
     public void updateInvader() {
         drawInvader();
+        firingBullet();
         if (y > invaders.getSizeY())
             invaders.removeInvader(this);
     }
