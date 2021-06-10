@@ -2,6 +2,7 @@ package com.company.model.game.bullets;
 
 import com.company.model.game.SGObserver;
 import com.company.model.game.StateGame;
+import com.company.model.game.player.Player;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,15 @@ public class BulletsManager implements SGObserver {
 
     public void addBullets(Bullets b) {
         allBullets.add(b);
+    }
+
+    public boolean bulletHitsPlayer(Player p) {
+        for (Bullets bs : allBullets) {
+            if (bs.bulletHitPlayer(p)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

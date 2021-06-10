@@ -1,5 +1,6 @@
 package com.company.model.game.bullets;
 
+import com.company.model.game.player.Player;
 import com.company.ui.UI;
 
 import java.awt.*;
@@ -23,5 +24,11 @@ public class PlayerBullet extends Bullet {
     public void updateBullet() {
         drawBullet();
         y -= 10;
+    }
+
+    //Never used
+    @Override
+    public boolean hitPlayer(Player p) {
+        return false;
     }
 }

@@ -18,6 +18,7 @@ public class Player implements SGObserver {
     private final int stageX, stageY;
     private final PlayerBullets playerBullets;
     private final InvadersManager invadersManager;
+    private final BulletsManager bulletsManager;
 
 
     public Player(StateGame sg) {
@@ -29,7 +30,7 @@ public class Player implements SGObserver {
         stageX = UI.getUi().getWid();
         stageY = UI.getUi().getHgt();
 
-        BulletsManager bulletsManager = sg.getBulletsManager();
+        bulletsManager = sg.getBulletsManager();
         invadersManager = sg.getInvadersManager();
 
         playerBullets = new PlayerBullets(invadersManager);
@@ -71,6 +72,9 @@ public class Player implements SGObserver {
     @Override
     public void updateSGO(StateGame sg) {
         if (invadersManager.invaderHitsPlayer(this)) {
+            dead = true;
+        }
+        if (bulletsManager.bulletHitsPlayer(this)) {
             dead = true;
         }
 

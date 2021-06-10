@@ -1,5 +1,7 @@
 package com.company.model.game.bullets;
 
+import com.company.model.game.player.Player;
+
 public abstract class Bullet {
     protected int x, y;
 
@@ -18,4 +20,5 @@ public abstract class Bullet {
 
     public abstract void drawBullet();
     public abstract void updateBullet();
+    public abstract boolean hitPlayer(Player p);
 }

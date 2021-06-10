@@ -21,6 +21,11 @@ public class NormalInvaderBullets extends LinkedList<NormalInvaderBullet> implem
 
     @Override
     public boolean bulletHitPlayer(Player p) {
+        for (NormalInvaderBullet b : this) {
+            if (b.hitPlayer(p)) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -59,5 +64,13 @@ class NormalInvaderBullet extends Bullet {
     public void updateBullet() {
         drawBullet();
         y += 10;
+    }
+
+    @Override
+    public boolean hitPlayer(Player p) {
+        int px = p.getX();
+        int py = p.getY();
+
+        return x >= px && x <= px + 30 && y >= py && y <= py + 20;
     }
 }
