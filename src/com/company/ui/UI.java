@@ -73,7 +73,7 @@ public class UI extends JFrame implements IGObserver {
 
 class ScreenPanel extends JPanel {
 
-    private BufferedImage image;
+    private final BufferedImage image;
 
     public ScreenPanel(int wid, int hgt) {
         super();
