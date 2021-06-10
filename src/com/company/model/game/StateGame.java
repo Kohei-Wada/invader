@@ -2,6 +2,7 @@ package com.company.model.game;
 
 import com.company.model.Model;
 import com.company.model.State;
+import com.company.model.game.bullets.BulletsManager;
 import com.company.model.game.invaders.InvadersManager;
 import com.company.model.game.player.Player;
 import com.company.model.gameover.StateGameOver;
@@ -13,12 +14,29 @@ public class StateGame extends State {
 
     private final ArrayList<SGObserver> observers;
     private final Player player;
+    private final BulletsManager bulletsManager;
+    private final InvadersManager invadersManager;
 
     public StateGame(Model m) {
         super(m);
         observers = new ArrayList<>();
+
+
+        /*
+        program will die if you make a mistake
+        in the initialization order
+         */
+        bulletsManager = new BulletsManager(this);
+        invadersManager = new InvadersManager(this);
         player = new Player(this);
-        new InvadersManager(this);
+    }
+
+    public InvadersManager getInvadersManager() {
+        return invadersManager;
+    }
+
+    public BulletsManager getBulletsManager() {
+        return bulletsManager;
     }
 
     public void addObserver(SGObserver sgo) {
@@ -55,5 +73,7 @@ public class StateGame extends State {
             player.addY(-8);
         if (keys.isPressed(KeyEvent.VK_DOWN))
             player.addY(8);
+        if (keys.isPressed(KeyEvent.VK_SPACE))
+            player.firingBullet();
     }
 }
