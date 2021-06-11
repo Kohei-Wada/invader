@@ -1,16 +1,15 @@
-package com.company.model.gameover;
+package com.company.model.start;
 
 import com.company.model.Model;
 import com.company.model.State;
+import com.company.model.game.StateGame;
 
 import java.awt.event.KeyEvent;
 
-public class StateGameOver extends State {
-
-
-    public StateGameOver(Model model) {
-        super(model);
-        System.out.println("state game over");
+public class StateStart extends State {
+    public StateStart(Model m) {
+        super(m);
+        System.out.println("state start");
     }
 
     @Override
@@ -26,9 +25,8 @@ public class StateGameOver extends State {
 
     @Override
     public void parseKey() {
-        if (keys.isPressed(KeyEvent.VK_Q)) {
-            System.exit(0);
+        if (keys.isPressed(KeyEvent.VK_SPACE)) {
+            model.setCurrentState(new StateGame(model));
         }
     }
 }
-

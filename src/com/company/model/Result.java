@@ -1,17 +1,18 @@
 package com.company.model;
 
 public class Result {
-    int score;
+    private int score;
 
     public Result() {
         score = 0;
     }
 
-    public void addScore(int n) {
-        score += n;
+    public void setScore(int score) {
+        this.score = score;
     }
 
-    public int getScore() {
+    public int gesScore() {
         return score;
     }
+
 }

@@ -4,6 +4,7 @@ import com.company.IGObserver;
 import com.company.InvaderGame;
 import com.company.model.game.StateGame;
 import com.company.model.gameover.StateGameOver;
+import com.company.model.start.StateStart;
 import com.company.ui.Keys;
 
 import java.security.Key;
@@ -23,7 +24,7 @@ public class Model implements IGObserver {
     }
 
     private Model() {
-        setCurrentState(new StateGame(this));
+        setCurrentState(new StateStart(this));
     }
 
     public State getCurrentState() {

@@ -1,5 +1,6 @@
 package com.company.model.game.invaders;
 
+import com.company.model.Result;
 import com.company.model.game.SGObserver;
 import com.company.model.game.StateGame;
 import com.company.model.game.bullets.BulletsManager;
@@ -57,5 +58,10 @@ public class InvadersManager implements SGObserver {
     @Override
     public void updateSGO(StateGame sg) {
         allInvaders.forEach(Invaders::updateInvaders);
+    }
+
+    @Override
+    public void setResult(Result result) {
+
     }
 }

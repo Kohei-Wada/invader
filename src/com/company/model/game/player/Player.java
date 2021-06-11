@@ -1,5 +1,6 @@
 package com.company.model.game.player;
 
+import com.company.model.Result;
 import com.company.model.game.SGObserver;
 import com.company.model.game.StateGame;
 import com.company.model.game.bullets.BulletsManager;
@@ -79,5 +80,10 @@ public class Player implements SGObserver {
         }
 
         drawPlayer();
+    }
+
+    @Override
+    public void setResult(Result result) {
+
     }
 }

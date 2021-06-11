@@ -1,6 +1,7 @@
 package com.company.model.game;
 
 import com.company.model.Model;
+import com.company.model.Result;
 import com.company.model.State;
 import com.company.model.game.bullets.BulletsManager;
 import com.company.model.game.invaders.InvadersManager;
@@ -19,6 +20,8 @@ public class StateGame extends State {
 
     public StateGame(Model m) {
         super(m);
+
+        System.out.println("state game");
         observers = new ArrayList<>();
 
         /*
@@ -50,6 +53,9 @@ public class StateGame extends State {
             observers.forEach(v -> v.updateSGO(this));
         }
         else {
+            Result result = new Result();
+            observers.forEach(v -> v.setResult(result));
+            model.setResult(result);
             model.setCurrentState(new StateGameOver(model));
         }
 

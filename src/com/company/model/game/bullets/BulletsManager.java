@@ -1,5 +1,6 @@
 package com.company.model.game.bullets;
 
+import com.company.model.Result;
 import com.company.model.game.SGObserver;
 import com.company.model.game.StateGame;
 import com.company.model.game.player.Player;
@@ -31,5 +32,10 @@ public class BulletsManager implements SGObserver {
     @Override
     public void updateSGO(StateGame sg) {
         allBullets.forEach(Bullets::updateBullets);
+    }
+
+    @Override
+    public void setResult(Result result) {
+
     }
 }
