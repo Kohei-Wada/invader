@@ -40,9 +40,9 @@ public class NormalInvaders extends Invaders{
     }
 
     @Override
-    public boolean invaderIsDead(PlayerBullet b) {
+    public boolean bulletHitsInvader(PlayerBullet b) {
         for (NormalInvader i : normalInvaders) {
-            if (i.isDead(b)) {
+            if (i.bulletHitInvader(b)) {
                 removeInvader(i);
                 return true;
             }
@@ -116,7 +116,7 @@ class NormalInvader extends Invader{
     }
 
     @Override
-    public boolean isDead(PlayerBullet b) {
+    public boolean bulletHitInvader(PlayerBullet b) {
         int bx = b.getX();
         int by = b.getY();
         return bx >= x && bx <= x + 30 && by >= y && by <= y + 20;

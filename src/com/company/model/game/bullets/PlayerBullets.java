@@ -13,9 +13,9 @@ public class PlayerBullets extends LinkedList<PlayerBullet> implements Bullets{
         manager = m;
     }
 
-    public void checkInvaderIsDead() {
+    public void checkBulletHitsInvader() {
         for (PlayerBullet b : this) {
-            if (manager.invaderIsDead(b)) {
+            if (manager.bulletHistInvader(b)) {
                 remove(b);
                 break;
             }
@@ -31,7 +31,7 @@ public class PlayerBullets extends LinkedList<PlayerBullet> implements Bullets{
 
     @Override
     public void updateBullets() {
-        checkInvaderIsDead();
+        checkBulletHitsInvader();
         forEach(PlayerBullet::updateBullet);
         deleteBullets();
     }

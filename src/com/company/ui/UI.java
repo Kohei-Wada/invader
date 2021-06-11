@@ -1,7 +1,6 @@
 package com.company.ui;
 
 import com.company.IGObserver;
-import com.company.InvaderGame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,10 +36,8 @@ public class UI extends JFrame implements IGObserver {
         setVisible(true);
 
         panel = new ScreenPanel(wid, hgt);
-        add(panel);
-
         g = panel.graphic();
-
+        add(panel);
     }
 
     public Keys getKeys() {

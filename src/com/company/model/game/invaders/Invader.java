@@ -10,12 +10,12 @@ public abstract class Invader {
     protected int getY() {
         return y;
     }
-
     protected int getX() {
         return x;
     }
+
     public abstract void updateInvader();
     public abstract void drawInvader();
-    public abstract boolean isDead(PlayerBullet b);
+    public abstract boolean bulletHitInvader(PlayerBullet b);
     public abstract boolean hitPlayer(Player p);
 }

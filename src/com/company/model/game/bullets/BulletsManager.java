@@ -35,7 +35,7 @@ public class BulletsManager implements SGObserver {
     }
 
     @Override
-    public void setResult(Result result) {
+    public void getResult(Result result) {
 
     }
 }

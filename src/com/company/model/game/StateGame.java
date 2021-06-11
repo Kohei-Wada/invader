@@ -54,7 +54,7 @@ public class StateGame extends State {
         }
         else {
             Result result = new Result();
-            observers.forEach(v -> v.setResult(result));
+            observers.forEach(v -> v.getResult(result));
             model.setResult(result);
             model.setCurrentState(new StateGameOver(model));
         }
@@ -69,11 +69,6 @@ public class StateGame extends State {
 
     @Override
     public void parseKey() {
-        if (keys.isPressed(KeyEvent.VK_Q)) {
-            setStateActive(false);
-            model.setCurrentState(new StateGameOver(model));
-        }
-
         if (keys.isPressed(KeyEvent.VK_LEFT))
             player.addX(-8);
         if (keys.isPressed(KeyEvent.VK_RIGHT))

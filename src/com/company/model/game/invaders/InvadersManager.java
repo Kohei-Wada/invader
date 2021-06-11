@@ -14,8 +14,6 @@ public class InvadersManager implements SGObserver {
     private final ArrayList<Invaders> allInvaders;
     private final BulletsManager bulletsManager;
 
-
-
     public InvadersManager(StateGame sg) {
         sg.addObserver(this);
         allInvaders = new ArrayList<>();
@@ -26,7 +24,6 @@ public class InvadersManager implements SGObserver {
 
     private void initAllInvaders() {
         new NormalInvaders(this);
-
     }
 
     public boolean invaderHitsPlayer(Player p) {
@@ -38,9 +35,9 @@ public class InvadersManager implements SGObserver {
         return false;
     }
 
-    public boolean invaderIsDead(PlayerBullet b) {
+    public boolean bulletHistInvader(PlayerBullet b) {
         for (Invaders i : allInvaders) {
-            if (i.invaderIsDead(b)) {
+            if (i.bulletHitsInvader(b)) {
                 return true;
             }
         }
@@ -61,7 +58,7 @@ public class InvadersManager implements SGObserver {
     }
 
     @Override
-    public void setResult(Result result) {
+    public void getResult(Result result) {
 
     }
 }

@@ -78,12 +78,11 @@ public class Player implements SGObserver {
         if (bulletsManager.bulletHitsPlayer(this)) {
             dead = true;
         }
-
         drawPlayer();
     }
 
     @Override
-    public void setResult(Result result) {
+    public void getResult(Result result) {
 
     }
 }
