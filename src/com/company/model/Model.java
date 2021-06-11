@@ -39,8 +39,8 @@ public class Model implements IGObserver {
         result = r;
     }
 
-    public Result getResult(Result r) {
-        return r;
+    public Result getResult() {
+        return result;
     }
 
     public Keys getKeys() {
