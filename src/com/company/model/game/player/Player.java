@@ -23,13 +23,14 @@ public class Player implements SGObserver {
 
 
     public Player(StateGame sg) {
-        x = 0;
-        y = 0;
         dead = false;
         sg.addObserver(this);
         g = UI.getUi().graphic();
         stageX = UI.getUi().getWid();
         stageY = UI.getUi().getHgt();
+
+        x = stageX / 2;
+        y = stageY / 3 * 2;
 
         bulletsManager = sg.getBulletsManager();
         invadersManager = sg.getInvadersManager();

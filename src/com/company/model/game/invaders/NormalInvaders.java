@@ -83,22 +83,28 @@ public class NormalInvaders extends Invaders{
 
 
 class NormalInvader extends Invader{
-    //TODO clean dead count code
+    //TODO clean death count code
     private final Graphics g;
     private final NormalInvaderBullets normalInvaderBullets;
     private final Random random;
+    private final int score;
+
+    private boolean countStart;
+    private int deathCount;
     private boolean dead;
-    private int deadCount;
-    private final int score = 30;
 
     public NormalInvader(int x, int y, NormalInvaders invaders) {
-        this.normalInvaderBullets = invaders.getNormalInvaderBullets();
-        this.dead = false;
         this.x = x;
         this.y = y;
-        this.g = invaders.graphics();
-        this.random = new Random();
-        this.deadCount = -1;
+        score = 30;
+
+        random = new Random();
+        g = invaders.graphics();
+        normalInvaderBullets = invaders.getNormalInvaderBullets();
+
+        dead = false;
+        deathCount = -1;
+        countStart = false;
     }
 
     private void firingBullet() {
@@ -115,16 +121,24 @@ class NormalInvader extends Invader{
 
     @Override
     public void updateInvader() {
-        if (deadCount == -1) {
+        if (!countStart) {
             y += 5;
             drawInvader();
             firingBullet();
         } else {
             drawScore();
-            if (--deadCount == 0) {
-                dead = true;
-            }
+            count();
         }
+    }
+
+    private void startDeathCount() {
+        deathCount = 20;
+        countStart = true;
+    }
+
+    private void count() {
+        if (--deathCount == 0)
+            dead = true;
     }
 
     @Override
@@ -136,13 +150,11 @@ class NormalInvader extends Invader{
 
     @Override
     public boolean bulletHitInvader(PlayerBullet b) {
-        if (deadCount != -1) return false;
-
         int bx = b.getX();
         int by = b.getY();
 
-        if (bx >= x && bx <= x + 30 && by >= y && by <= y + 20) {
-            deadCount = 20;
+        if (bx >= x && bx <= x + 30 && by >= y && by <= y + 20 && !countStart) {
+            startDeathCount();
             return true;
         }
         return false;
