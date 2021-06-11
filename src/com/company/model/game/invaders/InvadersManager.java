@@ -1,6 +1,5 @@
 package com.company.model.game.invaders;
 
-import com.company.model.Result;
 import com.company.model.game.SGObserver;
 import com.company.model.game.StateGame;
 import com.company.model.game.bullets.BulletsManager;
@@ -10,17 +9,13 @@ import com.company.model.game.player.Player;
 import java.util.ArrayList;
 
 public class InvadersManager implements SGObserver {
-
     private final ArrayList<Invaders> allInvaders;
     private final BulletsManager bulletsManager;
-
-    private int score;
 
     public InvadersManager(StateGame sg) {
         sg.addObserver(this);
         allInvaders = new ArrayList<>();
         bulletsManager = sg.getBulletsManager();
-        score = 0;
 
         initAllInvaders();
     }
@@ -53,17 +48,8 @@ public class InvadersManager implements SGObserver {
         return bulletsManager;
     }
 
-    public void addScore(int n) {
-        score += n;
-    }
-
     @Override
     public void updateSGO(StateGame sg) {
         allInvaders.forEach(Invaders::updateInvaders);
-    }
-
-    @Override
-    public void getResult(Result result) {
-        result.setScore(score);
     }
 }

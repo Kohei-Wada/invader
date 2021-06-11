@@ -9,20 +9,15 @@ import java.awt.event.KeyEvent;
 
 public class StateGameOver extends State {
 
-    private Result result;
 
     public StateGameOver(Model model) {
         super(model);
         System.out.println("state game over");
-        result = model.getResult();
-
-        System.out.println("score = " + result.gesScore());
     }
 
     @Override
     public void stateUpdate(Model model) {
         parseKey();
-
         try {
             Thread.sleep(33);
         } catch (Exception e) {

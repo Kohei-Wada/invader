@@ -53,9 +53,6 @@ public class StateGame extends State {
             observers.forEach(v -> v.updateSGO(this));
         }
         else {
-            Result result = new Result();
-            observers.forEach(v -> v.getResult(result));
-            model.setResult(result);
             model.setCurrentState(new StateGameOver(model));
         }
 

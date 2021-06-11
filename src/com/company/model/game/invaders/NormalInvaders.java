@@ -47,7 +47,6 @@ public class NormalInvaders extends Invaders{
     public boolean bulletHitsInvader(PlayerBullet b) {
         for (NormalInvader i : normalInvaders) {
             if (i.bulletHitInvader(b)) {
-                manager.addScore(i.getScore());
                 return true;
             }
         }

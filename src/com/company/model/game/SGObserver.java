@@ -4,5 +4,4 @@ import com.company.model.Result;
 
 public interface SGObserver {
     void updateSGO(StateGame sg);
-    void getResult(Result result);
 }
