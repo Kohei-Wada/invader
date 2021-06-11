@@ -34,16 +34,9 @@ public class NormalInvaderBullets extends LinkedList<NormalInvaderBullet> implem
     }
 
     private void deleteBullets() {
-        for (int i = 0; i < size(); ++i) {
-            NormalInvaderBullet b = get(i);
-            if (b.getY() > stageY) {
-                remove(b);
-                --i;
-            }
-        }
+        this.removeIf(bullet -> bullet.getY() > stageY);
     }
 }
-
 
 
 class NormalInvaderBullet extends Bullet {

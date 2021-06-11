@@ -30,14 +30,6 @@ public class NormalInvaders extends Invaders{
         manager.getBulletsManager().addBullets(normalInvaderBullets);
     }
 
-    public int getSizeX() {
-        return sizeX;
-    }
-
-    public int getSizeY() {
-        return sizeY;
-    }
-
     @Override
     public void updateInvaders() {
         if (random.nextInt(40) == 1) {
@@ -73,13 +65,7 @@ public class NormalInvaders extends Invaders{
     }
 
     private void deleteInvaders() {
-        for (int i = 0; i < normalInvaders.size(); ++i) {
-            NormalInvader invader = normalInvaders.get(i);
-            if (invader.getY() > sizeY) {
-                normalInvaders.remove(invader);
-                --i;
-            }
-        }
+        normalInvaders.removeIf(invader -> invader.getY() > sizeY);
     }
 
     public void addInvader(int x, int y) {
@@ -140,7 +126,6 @@ class NormalInvader extends Invader{
     public boolean hitPlayer(Player p) {
         int px = p.getX();
         int py = p.getY();
-
         return (x >= px && x <= px + 30 && y >= py && y <= py + 20) ||
                 (x + 30 >= px && x + 30 <= px + 30 && y + 20 >= py && y + 20 <= py + 20);
     }

@@ -41,9 +41,6 @@ public class StateGame extends State {
     public void addObserver(SGObserver sgo) {
         observers.add(sgo);
     }
-    public void removeObserver(SGObserver sgo) {
-        observers.remove(sgo);
-    }
 
     @Override
     public void stateUpdate(Model model) {

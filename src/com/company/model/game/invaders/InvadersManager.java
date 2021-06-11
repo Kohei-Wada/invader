@@ -1,9 +1,7 @@
 package com.company.model.game.invaders;
 
-import com.company.InvaderGame;
 import com.company.model.game.SGObserver;
 import com.company.model.game.StateGame;
-import com.company.model.game.bullets.Bullet;
 import com.company.model.game.bullets.BulletsManager;
 import com.company.model.game.bullets.PlayerBullet;
 import com.company.model.game.player.Player;

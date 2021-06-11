@@ -26,13 +26,7 @@ public class PlayerBullets extends LinkedList<PlayerBullet> implements Bullets{
     delete bullets that have gone off the screen
      */
     private void deleteBullets() {
-        for (int i = 0; i < this.size(); ++i) {
-            PlayerBullet b = this.get(i);
-            if (b.getY() < 0) {
-                remove(b);
-                --i;
-            }
-        }
+        this.removeIf(bullet -> bullet.getY() < 0);
     }
 
     @Override
