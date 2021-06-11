@@ -7,14 +7,15 @@ import com.company.ui.UI;
 
 import java.awt.*;
 import java.util.LinkedList;
+import java.util.Random;
 
 public class NormalInvaders extends Invaders{
     private final Graphics g;
     private final LinkedList<NormalInvader> normalInvaders;
-
     private final NormalInvaderBullets normalInvaderBullets;
-
     private final int sizeX, sizeY;
+
+    private final Random random;
 
     public NormalInvaders(InvadersManager manager) {
         normalInvaders = new LinkedList<>();
@@ -23,15 +24,10 @@ public class NormalInvaders extends Invaders{
         g = ui.graphic();
         sizeX = ui.getWid();
         sizeY = ui.getHgt();
-
-        //test
-        addInvader(100, 100);
-        addInvader(400, 100);
+        random = new Random();
 
         manager.addInvaders(this);
         manager.getBulletsManager().addBullets(normalInvaderBullets);
-
-
     }
 
     public int getSizeX() {
@@ -44,7 +40,11 @@ public class NormalInvaders extends Invaders{
 
     @Override
     public void updateInvaders() {
+        if (random.nextInt(40) == 1) {
+            addInvader(random.nextInt(sizeX - 30), 0);
+        }
         normalInvaders.forEach(NormalInvader::updateInvader);
+        deleteInvaders();
     }
 
     @Override
@@ -72,6 +72,16 @@ public class NormalInvaders extends Invaders{
         return g;
     }
 
+    private void deleteInvaders() {
+        for (int i = 0; i < normalInvaders.size(); ++i) {
+            NormalInvader invader = normalInvaders.get(i);
+            if (invader.getY() > sizeY) {
+                normalInvaders.remove(invader);
+                --i;
+            }
+        }
+    }
+
     public void addInvader(int x, int y) {
         normalInvaders.add(new NormalInvader(x, y, this));
     }
@@ -88,28 +98,28 @@ public class NormalInvaders extends Invaders{
 
 class NormalInvader extends Invader{
     private final Graphics g;
-    private final NormalInvaders invaders;
     private final NormalInvaderBullets normalInvaderBullets;
+    private final Random random;
 
     public NormalInvader(int x, int y, NormalInvaders invaders) {
         this.normalInvaderBullets = invaders.getNormalInvaderBullets();
-        this.invaders = invaders;
         this.x = x;
         this.y = y;
         this.g = invaders.graphics();
-
+        this.random = new Random();
     }
 
     private void firingBullet() {
-        normalInvaderBullets.addNormalInvaderBullet(x + 12, y);
+        if (random.nextInt(20) == 1) {
+            normalInvaderBullets.addNormalInvaderBullet(x + 12, y + 5);
+        }
     }
 
     @Override
     public void updateInvader() {
+        y += 5;
         drawInvader();
         firingBullet();
-        if (y > invaders.getSizeY())
-            invaders.removeInvader(this);
     }
 
     @Override

@@ -49,7 +49,7 @@ public class PlayerBullets extends LinkedList<PlayerBullet> implements Bullets{
     }
 
     public void addPlayerBullet(int x, int y) {
-        add(new PlayerBullet(x, y));
+        add(new PlayerBullet(x, y, this));
     }
 }
 

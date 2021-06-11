@@ -8,9 +8,14 @@ import java.awt.*;
 public class PlayerBullet extends Bullet {
 
     private final Graphics g;
+    private final int stageY;
+    private final PlayerBullets playerBullets;
 
-    public PlayerBullet(int x, int y) {
+    public PlayerBullet(int x, int y, PlayerBullets playerBullets) {
         super(x, y);
+
+        this.playerBullets = playerBullets;
+        stageY = UI.getUi().getHgt();
         g = UI.getUi().graphic();
     }
 
