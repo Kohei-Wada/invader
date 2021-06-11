@@ -36,6 +36,7 @@ public class NormalInvaders extends Invaders{
             addInvader(random.nextInt(sizeX - 30), 0);
         }
         normalInvaders.forEach(NormalInvader::updateInvader);
+        checkInvaderIsDead();
         deleteInvaders();
     }
 
@@ -43,7 +44,6 @@ public class NormalInvaders extends Invaders{
     public boolean bulletHitsInvader(PlayerBullet b) {
         for (NormalInvader i : normalInvaders) {
             if (i.bulletHitInvader(b)) {
-                removeInvader(i);
                 return true;
             }
         }
@@ -60,6 +60,10 @@ public class NormalInvaders extends Invaders{
         return false;
     }
 
+    public void checkInvaderIsDead() {
+        normalInvaders.removeIf(NormalInvader::isDead);
+    }
+
     public Graphics graphics() {
         return g;
     }
@@ -72,10 +76,6 @@ public class NormalInvaders extends Invaders{
         normalInvaders.add(new NormalInvader(x, y, this));
     }
 
-    public void removeInvader(NormalInvader i) {
-        normalInvaders.remove(i);
-    }
-
     public NormalInvaderBullets getNormalInvaderBullets() {
         return normalInvaderBullets;
     }
@@ -83,16 +83,22 @@ public class NormalInvaders extends Invaders{
 
 
 class NormalInvader extends Invader{
+    //TODO clean dead count code
     private final Graphics g;
     private final NormalInvaderBullets normalInvaderBullets;
     private final Random random;
+    private boolean dead;
+    private int deadCount;
+    private final int score = 30;
 
     public NormalInvader(int x, int y, NormalInvaders invaders) {
         this.normalInvaderBullets = invaders.getNormalInvaderBullets();
+        this.dead = false;
         this.x = x;
         this.y = y;
         this.g = invaders.graphics();
         this.random = new Random();
+        this.deadCount = -1;
     }
 
     private void firingBullet() {
@@ -101,11 +107,24 @@ class NormalInvader extends Invader{
         }
     }
 
+    private void drawScore() {
+        g.setColor(Color.WHITE);
+        g.setFont(new Font(String.valueOf(score), Font.PLAIN, 15));
+        g.drawString(String.valueOf(score), x, y);
+    }
+
     @Override
     public void updateInvader() {
-        y += 5;
-        drawInvader();
-        firingBullet();
+        if (deadCount == -1) {
+            y += 5;
+            drawInvader();
+            firingBullet();
+        } else {
+            drawScore();
+            if (--deadCount == 0) {
+                dead = true;
+            }
+        }
     }
 
     @Override
@@ -117,9 +136,20 @@ class NormalInvader extends Invader{
 
     @Override
     public boolean bulletHitInvader(PlayerBullet b) {
+        if (deadCount != -1) return false;
+
         int bx = b.getX();
         int by = b.getY();
-        return bx >= x && bx <= x + 30 && by >= y && by <= y + 20;
+
+        if (bx >= x && bx <= x + 30 && by >= y && by <= y + 20) {
+            deadCount = 20;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isDead() {
+        return dead;
     }
 
     @Override
