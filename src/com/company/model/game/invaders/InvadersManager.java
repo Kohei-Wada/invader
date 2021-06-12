@@ -16,7 +16,6 @@ public class InvadersManager implements SGObserver {
         sg.addObserver(this);
         allInvaders = new ArrayList<>();
         bulletsManager = sg.getBulletsManager();
-
         initAllInvaders();
     }
 
@@ -25,19 +24,11 @@ public class InvadersManager implements SGObserver {
     }
 
     public boolean invaderHitsPlayer(Player p) {
-        for (Invaders i : allInvaders) {
-            if (i.invaderHitPlayer(p))
-                return true;
-        }
-        return false;
+        return allInvaders.stream().anyMatch(i -> i.invaderHitPlayer(p));
     }
 
     public boolean bulletHistInvader(PlayerBullet b) {
-        for (Invaders i : allInvaders) {
-            if (i.bulletHitsInvader(b))
-                return true;
-        }
-        return false;
+        return allInvaders.stream().anyMatch(i -> i.bulletHitsInvader(b));
     }
 
     public void addInvaders(Invaders i) {

@@ -21,12 +21,7 @@ public class NormalInvaderBullets extends LinkedList<NormalInvaderBullet> implem
 
     @Override
     public boolean bulletHitPlayer(Player p) {
-        for (NormalInvaderBullet b : this) {
-            if (b.hitPlayer(p)) {
-                return true;
-            }
-        }
-        return false;
+        return stream().anyMatch(b -> b.hitPlayer(p));
     }
 
     public void addNormalInvaderBullet(int x, int y) {

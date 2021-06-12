@@ -41,21 +41,12 @@ public class NormalInvaders extends Invaders{
 
     @Override
     public boolean bulletHitsInvader(PlayerBullet b) {
-        for (NormalInvader i : normalInvaders) {
-            if (i.bulletHitInvader(b)) {
-                return true;
-            }
-        }
-        return false;
+        return normalInvaders.stream().anyMatch(i -> i.bulletHitInvader(b));
     }
 
     @Override
     public boolean invaderHitPlayer(Player p) {
-        for (NormalInvader i : normalInvaders) {
-            if (i.hitPlayer(p))
-                return true;
-        }
-        return false;
+        return normalInvaders.stream().anyMatch(i -> i.hitPlayer(p));
     }
 
     public void checkInvaderIsDead() {

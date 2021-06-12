@@ -11,7 +11,6 @@ import java.awt.*;
 
 public class Player implements SGObserver {
 
-
     private boolean dead;
     private int x, y;
     private final Graphics g;
@@ -36,8 +35,8 @@ public class Player implements SGObserver {
 
         playerBullets = new PlayerBullets(invadersManager);
         bulletsManager.addBullets(playerBullets);
-
     }
+
     public int getX() {
         return x;
     }
@@ -48,12 +47,12 @@ public class Player implements SGObserver {
 
     public void addX(int n) {
         if (x + n > 0 && x + n < stageX)
-        x += n;
+            x += n;
     }
 
     public void addY(int n) {
         if (y + n > 0 && y + n < stageY)
-        y += n;
+            y += n;
     }
 
     private void drawPlayer() {
@@ -72,13 +71,12 @@ public class Player implements SGObserver {
 
     @Override
     public void updateSGO(StateGame sg) {
-        if (invadersManager.invaderHitsPlayer(this)) {
+        if (invadersManager.invaderHitsPlayer(this))
             dead = true;
-        }
-        if (bulletsManager.bulletHitsPlayer(this)) {
+        if (bulletsManager.bulletHitsPlayer(this))
             dead = true;
-        }
-        drawPlayer();
-    }
 
+        drawPlayer();
+
+    }
 }

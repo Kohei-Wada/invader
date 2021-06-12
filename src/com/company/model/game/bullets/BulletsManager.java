@@ -20,12 +20,7 @@ public class BulletsManager implements SGObserver {
     }
 
     public boolean bulletHitsPlayer(Player p) {
-        for (Bullets bs : allBullets) {
-            if (bs.bulletHitPlayer(p)) {
-                return true;
-            }
-        }
-        return false;
+        return allBullets.stream().anyMatch(v -> v.bulletHitPlayer(p));
     }
 
     @Override
