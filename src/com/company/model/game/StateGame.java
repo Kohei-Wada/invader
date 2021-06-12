@@ -1,7 +1,6 @@
 package com.company.model.game;
 
 import com.company.model.Model;
-import com.company.model.Result;
 import com.company.model.State;
 import com.company.model.game.bullets.BulletsManager;
 import com.company.model.game.invaders.InvadersManager;
@@ -66,6 +65,9 @@ public class StateGame extends State {
 
     @Override
     public void parseKey() {
+        if (keys.isPressed(KeyEvent.VK_Q))
+            System.exit(0);
+
         if (keys.isPressed(KeyEvent.VK_LEFT))
             player.addX(-8);
         if (keys.isPressed(KeyEvent.VK_RIGHT))

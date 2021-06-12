@@ -1,7 +1,6 @@
 package com.company.model.game.bullets;
 
 import com.company.model.game.player.Player;
-import com.company.ui.UI;
 
 import java.awt.*;
 

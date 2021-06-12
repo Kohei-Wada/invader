@@ -3,7 +3,6 @@ package com.company.model;
 import com.company.ui.Keys;
 
 public abstract class State {
-   protected boolean stateActive;
    protected Keys keys;
    protected Model model;
 
@@ -15,8 +14,6 @@ public abstract class State {
    public void setKeys(Keys k) {
       keys = k;
    }
-
    public abstract void stateUpdate(Model model);
-
    public abstract void parseKey();
 }

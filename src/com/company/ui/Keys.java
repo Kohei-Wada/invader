@@ -21,7 +21,6 @@ public class Keys extends KeyAdapter {
     public void keyPressed(KeyEvent e) {
         super.keyPressed(e);
 
-        //System.out.println("pressed");
         Integer key = e.getKeyCode();
         if (!keys.contains(key))
             keys.add(key);
@@ -30,9 +29,6 @@ public class Keys extends KeyAdapter {
     @Override
     public void keyReleased(KeyEvent e) {
         super.keyReleased(e);
-
-        //System.out.println("released");
-        Integer key = e.getKeyCode();
-        keys.remove(key);
+        keys.remove((Integer) e.getKeyCode());
     }
 }

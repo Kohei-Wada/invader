@@ -10,6 +10,7 @@ import com.company.ui.Keys;
 import java.security.Key;
 
 public class Model implements IGObserver {
+    //Sigleton
 
     private static Model model = new Model();
     private State state;
