@@ -7,11 +7,8 @@ import java.awt.*;
 
 public class PlayerBullet extends Bullet {
 
-    private final Graphics g;
-
     public PlayerBullet(int x, int y) {
         super(x, y);
-        g = UI.getUi().graphic();
     }
 
     @Override

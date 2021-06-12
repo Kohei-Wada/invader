@@ -40,11 +40,9 @@ public class NormalInvaderBullets extends LinkedList<NormalInvaderBullet> implem
 
 
 class NormalInvaderBullet extends Bullet {
-    private final Graphics g;
 
     public NormalInvaderBullet(int x, int y) {
         super(x, y);
-        g = UI.getUi().graphic();
     }
 
     @Override
@@ -63,7 +61,6 @@ class NormalInvaderBullet extends Bullet {
     public boolean hitPlayer(Player p) {
         int px = p.getX();
         int py = p.getY();
-
         return x >= px && x <= px + 30 && y >= py && y <= py + 20;
     }
 }
