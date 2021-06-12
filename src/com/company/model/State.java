@@ -10,11 +10,6 @@ public abstract class State {
    public State(Model m) {
       model = m;
       keys = model.getKeys();
-      stateActive = true;
-   }
-
-   public void setStateActive(boolean flag) {
-      stateActive = flag;
    }
 
    public void setKeys(Keys k) {

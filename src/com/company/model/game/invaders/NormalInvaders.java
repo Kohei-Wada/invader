@@ -11,8 +11,6 @@ import java.util.Random;
 
 public class NormalInvaders extends Invaders{
 
-    private final InvadersManager manager;
-    private final Graphics g;
     private final LinkedList<NormalInvader> normalInvaders;
     private final NormalInvaderBullets normalInvaderBullets;
     private final int sizeX, sizeY;
@@ -20,17 +18,15 @@ public class NormalInvaders extends Invaders{
     private final Random random;
 
     public NormalInvaders(InvadersManager m) {
-        manager = m;
         normalInvaders = new LinkedList<>();
         normalInvaderBullets = new NormalInvaderBullets();
         UI ui = UI.getUi();
-        g = ui.graphic();
         sizeX = ui.getWid();
         sizeY = ui.getHgt();
         random = new Random();
 
-        manager.addInvaders(this);
-        manager.getBulletsManager().addBullets(normalInvaderBullets);
+        m.addInvaders(this);
+        m.getBulletsManager().addBullets(normalInvaderBullets);
     }
 
     @Override
@@ -66,10 +62,6 @@ public class NormalInvaders extends Invaders{
         normalInvaders.removeIf(NormalInvader::isDead);
     }
 
-    public Graphics graphics() {
-        return g;
-    }
-
     private void deleteInvaders() {
         normalInvaders.removeIf(invader -> invader.getY() > sizeY);
     }
@@ -86,24 +78,18 @@ public class NormalInvaders extends Invaders{
 
 class NormalInvader extends Invader{
     //TODO clean death count code
-    private final Graphics g;
     private final NormalInvaderBullets normalInvaderBullets;
     private final Random random;
-    private final int score;
 
     private boolean countStart;
     private int deathCount;
-    private boolean dead;
 
     public NormalInvader(int x, int y, NormalInvaders invaders) {
-        this.x = x;
-        this.y = y;
-        score = 30;
+        super(x, y);
+        setScore(30);
 
         random = new Random();
-        g = invaders.graphics();
         normalInvaderBullets = invaders.getNormalInvaderBullets();
-
         dead = false;
         deathCount = -1;
         countStart = false;
@@ -131,13 +117,6 @@ class NormalInvader extends Invader{
             dead = true;
     }
 
-    public int getScore() {
-        return score;
-    }
-
-    public boolean isDead() {
-        return dead;
-    }
 
     @Override
     public void drawInvader() {

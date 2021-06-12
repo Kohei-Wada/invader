@@ -44,10 +44,4 @@ public class InvaderGame {
         model.setKeys(ui.getKeys());
         active = true;
     }
-
-    public void gameStop() {
-        active = false;
-    }
-
-
 }
