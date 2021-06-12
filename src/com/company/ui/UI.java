@@ -9,8 +9,8 @@ import java.awt.image.BufferedImage;
 public class UI extends JFrame implements IGObserver {
     private static UI ui = null;
 
-    private final int wid = 500;
-    private final int hgt = 500;
+    private final int wid = 800;
+    private final int hgt = 800;
     private final Keys keys;
     private Graphics g;
     private ScreenPanel panel;

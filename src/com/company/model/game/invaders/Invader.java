@@ -26,6 +26,10 @@ public abstract class Invader {
         return dead;
     }
 
+    protected void setDead() {
+        dead = true;
+    }
+
     protected void setScore(int n) {
         score = n;
     }

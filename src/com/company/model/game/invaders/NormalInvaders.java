@@ -14,8 +14,8 @@ public class NormalInvaders extends Invaders{
     private final LinkedList<NormalInvader> normalInvaders;
     private final NormalInvaderBullets normalInvaderBullets;
     private final int sizeX, sizeY;
-
     private final Random random;
+
 
     public NormalInvaders(InvadersManager m) {
         normalInvaders = new LinkedList<>();
