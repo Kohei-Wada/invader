@@ -13,24 +13,15 @@ public class PlayerBullets extends LinkedList<PlayerBullet> implements Bullets{
         manager = m;
     }
 
-    public void checkBulletHitsInvader() {
-        for (PlayerBullet b : this) {
-            if (manager.bulletHistInvader(b)) {
-                remove(b);
-                break;
-            }
-        }
-    }
-
-    private void deleteBullets() {
-        removeIf(bullet -> bullet.getY() < 0);
-    }
-
     @Override
     public void updateBullets() {
-        checkBulletHitsInvader();
         forEach(PlayerBullet::updateBullet);
-        deleteBullets();
+
+        //remove bullets that has hit to invader
+        removeIf(manager::bulletHistInvader);
+
+        //remove bullets that has gone off the stage
+        removeIf(b -> b.getY() < 0);
     }
 
     //Never used method

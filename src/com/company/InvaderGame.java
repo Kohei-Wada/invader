@@ -10,7 +10,7 @@ public class InvaderGame {
     private final ArrayList<IGObserver> observers;
     private boolean active = false;
 
-    public static InvaderGame getGame() {
+    public synchronized static InvaderGame getGame() {
         if (game == null)
             game = new InvaderGame();
         return  game;

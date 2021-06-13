@@ -83,7 +83,7 @@ class NormalInvader extends Invader{
         int bx = b.getX();
         int by = b.getY();
 
-        if (bx >= x && bx <= x + 30 && by >= y && by <= y + 20 && hp != 0) {
+        if (hp != 0 && bx >= x && bx <= x + 30 && by >= y && by <= y + 20) {
             --hp;
             return true;
         }

@@ -17,7 +17,7 @@ public class Model implements IGObserver {
     private Result result;
     private Keys keys;
 
-    public static Model getModel() {
+    public synchronized static Model getModel() {
         if (model == null) {
             model = new Model();
         }

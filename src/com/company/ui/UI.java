@@ -15,7 +15,7 @@ public class UI extends JFrame implements IGObserver{
     private Graphics g;
     private ScreenPanel panel;
 
-    public static UI getUi() {
+    public synchronized static UI getUi() {
         if (ui == null) {
             ui = new UI();
         }
