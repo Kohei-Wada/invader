@@ -27,7 +27,6 @@ public class NormalBullets extends LinkedList<NormalBullet> implements Bullets{
     public void addNormalBullet(int x, int y) {
         add(new NormalBullet(x, y));
     }
-
     private void deleteBullets() {
         this.removeIf(bullet -> bullet.getY() > stageY);
     }

@@ -9,22 +9,18 @@ import java.awt.*;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class NormalInvaders extends Invaders{
+public class NormalInvaders extends LinkedList<NormalInvader> implements Invaders{
 
-    private final LinkedList<NormalInvader> normalInvaders;
     private final NormalBullets normalBullets;
     private final int sizeX, sizeY;
     private final Random random;
 
-
     public NormalInvaders(InvadersManager m) {
-        normalInvaders = new LinkedList<>();
         normalBullets = new NormalBullets();
         UI ui = UI.getUi();
         sizeX = ui.getWid();
         sizeY = ui.getHgt();
         random = new Random();
-
         m.addInvaders(this);
         m.getBulletsManager().addBullets(normalBullets);
     }
@@ -32,34 +28,26 @@ public class NormalInvaders extends Invaders{
     @Override
     public void updateInvaders() {
         if (random.nextInt(40) == 1) {
-            addInvader(random.nextInt(sizeX - 30), 0);
+            add(new NormalInvader(random.nextInt(sizeX - 30), 0, this));
         }
-        normalInvaders.forEach(NormalInvader::updateInvader);
-        removeDeadInvaders();
-        removeInvaders();
+
+        forEach(NormalInvader::updateInvader);
+
+        //remove dead invaders
+        removeIf(NormalInvader::isDead);
+
+        //remove invaders that has gone off the stage
+        removeIf(invader -> invader.getY() > sizeY);
     }
 
     @Override
     public boolean bulletHitsInvader(PlayerBullet b) {
-        return normalInvaders.stream().anyMatch(i -> i.bulletHitInvader(b));
+        return stream().anyMatch(i -> i.bulletHitInvader(b));
     }
 
     @Override
     public boolean invaderHitPlayer(Player p) {
-        return normalInvaders.stream().anyMatch(i -> i.hitPlayer(p));
-    }
-
-    private void removeDeadInvaders() {
-        normalInvaders.removeIf(NormalInvader::isDead);
-    }
-
-    //remove invaders that has gone off the stage
-    private void removeInvaders() {
-        normalInvaders.removeIf(invader -> invader.getY() > sizeY);
-    }
-
-    public void addInvader(int x, int y) {
-        normalInvaders.add(new NormalInvader(x, y, this));
+        return stream().anyMatch(i -> i.hitPlayer(p));
     }
 
     public NormalBullets getNormalInvaderBullets() {
