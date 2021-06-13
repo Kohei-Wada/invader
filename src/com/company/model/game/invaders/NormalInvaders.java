@@ -35,8 +35,8 @@ public class NormalInvaders extends Invaders{
             addInvader(random.nextInt(sizeX - 30), 0);
         }
         normalInvaders.forEach(NormalInvader::updateInvader);
-        checkInvaderIsDead();
-        deleteInvaders();
+        removeDeadInvaders();
+        removeInvaders();
     }
 
     @Override
@@ -49,11 +49,12 @@ public class NormalInvaders extends Invaders{
         return normalInvaders.stream().anyMatch(i -> i.hitPlayer(p));
     }
 
-    public void checkInvaderIsDead() {
+    private void removeDeadInvaders() {
         normalInvaders.removeIf(NormalInvader::isDead);
     }
 
-    private void deleteInvaders() {
+    //remove invaders that has gone off the stage
+    private void removeInvaders() {
         normalInvaders.removeIf(invader -> invader.getY() > sizeY);
     }
 
@@ -65,7 +66,6 @@ public class NormalInvaders extends Invaders{
         return normalInvaderBullets;
     }
 }
-
 
 class NormalInvader extends Invader{
     //TODO clean death count code
@@ -116,11 +116,11 @@ class NormalInvader extends Invader{
         g.fillRect(x + 10, y + 10, 10, 10);
     }
 
+    //this method is called when a bullet hits
     @Override
     public boolean bulletHitInvader(PlayerBullet b) {
         int bx = b.getX();
         int by = b.getY();
-
         if (bx >= x && bx <= x + 30 && by >= y && by <= y + 20 && !countStart) {
             startDeathCount();
             return true;
@@ -139,6 +139,7 @@ class NormalInvader extends Invader{
             count();
         }
     }
+
 
     @Override
     public boolean hitPlayer(Player p) {
