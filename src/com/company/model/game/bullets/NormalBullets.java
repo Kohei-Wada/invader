@@ -16,19 +16,15 @@ public class NormalBullets extends LinkedList<NormalBullet> implements Bullets{
     @Override
     public void updateBullets() {
         forEach(NormalBullet::updateBullet);
-        deleteBullets();
+        removeIf(b -> b.getY() > stageY);
     }
 
     @Override
     public boolean bulletsHitPlayer(Player p) {
         return stream().anyMatch(b -> b.hitsPlayer(p));
     }
-
     public void addNormalBullet(int x, int y) {
         add(new NormalBullet(x, y));
-    }
-    private void deleteBullets() {
-        this.removeIf(bullet -> bullet.getY() > stageY);
     }
 }
 

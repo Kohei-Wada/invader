@@ -24,7 +24,7 @@ public class PlayerBullets extends LinkedList<PlayerBullet> implements Bullets{
         removeIf(b -> b.getY() < 0);
     }
 
-    //Never used method
+    //Never used
     @Override
     public boolean bulletsHitPlayer(Player p) {
         return false;
