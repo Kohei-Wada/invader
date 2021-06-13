@@ -12,7 +12,9 @@ import java.awt.*;
 public class Player implements SGObserver {
 
     private boolean dead;
+    private int hp;
     private int x, y;
+
     private final Graphics g;
     private final int stageX, stageY;
     private final PlayerBullets playerBullets;
@@ -21,7 +23,6 @@ public class Player implements SGObserver {
 
 
     public Player(StateGame sg) {
-        dead = false;
         sg.addObserver(this);
         g = UI.getUi().graphic();
         stageX = UI.getUi().getWid();
@@ -29,6 +30,8 @@ public class Player implements SGObserver {
 
         x = stageX / 2;
         y = stageY / 3 * 2;
+        hp = 1;
+        dead = false;
 
         bulletsManager = sg.getBulletsManager();
         invadersManager = sg.getInvadersManager();
@@ -69,14 +72,18 @@ public class Player implements SGObserver {
         return dead;
     }
 
+    private void damaged() {
+        if (--hp == 0)
+            dead = true;
+    }
+
     @Override
     public void updateSGO(StateGame sg) {
         if (invadersManager.invaderHitsPlayer(this))
-            dead = true;
+            damaged();
         if (bulletsManager.bulletsHitPlayer(this))
-            dead = true;
+            damaged();
 
         drawPlayer();
-
     }
 }

@@ -10,7 +10,5 @@ public class Main {
         game.addObserver(UI.getUi());
         game.addObserver(Model.getModel());
         game.run();
-
-
     }
 }
