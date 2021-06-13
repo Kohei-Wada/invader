@@ -1,6 +1,6 @@
 package com.company.model.game.invaders;
 
-import com.company.model.game.bullets.NormalInvaderBullets;
+import com.company.model.game.bullets.NormalBullets;
 import com.company.model.game.bullets.PlayerBullet;
 import com.company.model.game.player.Player;
 import com.company.ui.UI;
@@ -12,21 +12,21 @@ import java.util.Random;
 public class NormalInvaders extends Invaders{
 
     private final LinkedList<NormalInvader> normalInvaders;
-    private final NormalInvaderBullets normalInvaderBullets;
+    private final NormalBullets normalBullets;
     private final int sizeX, sizeY;
     private final Random random;
 
 
     public NormalInvaders(InvadersManager m) {
         normalInvaders = new LinkedList<>();
-        normalInvaderBullets = new NormalInvaderBullets();
+        normalBullets = new NormalBullets();
         UI ui = UI.getUi();
         sizeX = ui.getWid();
         sizeY = ui.getHgt();
         random = new Random();
 
         m.addInvaders(this);
-        m.getBulletsManager().addBullets(normalInvaderBullets);
+        m.getBulletsManager().addBullets(normalBullets);
     }
 
     @Override
@@ -62,35 +62,28 @@ public class NormalInvaders extends Invaders{
         normalInvaders.add(new NormalInvader(x, y, this));
     }
 
-    public NormalInvaderBullets getNormalInvaderBullets() {
-        return normalInvaderBullets;
+    public NormalBullets getNormalInvaderBullets() {
+        return normalBullets;
     }
 }
 
 class NormalInvader extends Invader{
     //TODO clean death count code
-    private final NormalInvaderBullets normalInvaderBullets;
-    private final Random random;
+    private final NormalBullets normalInvaderBullets;
 
     public NormalInvader(int x, int y, NormalInvaders invaders) {
-        super(x, y);
-
-        //set score obtained by defeating this invader
-        setScore(30);
-
-        random = new Random();
+        super(x, y, 1, 30);
         normalInvaderBullets = invaders.getNormalInvaderBullets();
-        dead = false;
     }
 
     private void firingBullet() {
         if (random.nextInt(20) == 1) {
-            normalInvaderBullets.addNormalInvaderBullet(x + 12, y + 5);
+            normalInvaderBullets.addNormalBullet(x + 12, y + 5);
         }
     }
 
     @Override
-    public void drawInvader() {
+    protected void drawInvader() {
         g.setColor(Color.red);
         g.fillRect(x, y , 30, 10);
         g.fillRect(x + 10, y + 10, 10, 10);

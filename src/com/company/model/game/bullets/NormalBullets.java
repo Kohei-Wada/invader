@@ -6,16 +6,16 @@ import com.company.ui.UI;
 import java.awt.*;
 import java.util.LinkedList;
 
-public class NormalInvaderBullets extends LinkedList<NormalInvaderBullet> implements Bullets{
+public class NormalBullets extends LinkedList<NormalBullet> implements Bullets{
 
     private final int  stageY;
 
-    public NormalInvaderBullets() {
+    public NormalBullets() {
         stageY = UI.getUi().getHgt();
     }
     @Override
     public void updateBullets() {
-        forEach(NormalInvaderBullet::updateBullet);
+        forEach(NormalBullet::updateBullet);
         deleteBullets();
     }
 
@@ -24,8 +24,8 @@ public class NormalInvaderBullets extends LinkedList<NormalInvaderBullet> implem
         return stream().anyMatch(b -> b.hitsPlayer(p));
     }
 
-    public void addNormalInvaderBullet(int x, int y) {
-        add(new NormalInvaderBullet(x, y));
+    public void addNormalBullet(int x, int y) {
+        add(new NormalBullet(x, y));
     }
 
     private void deleteBullets() {
@@ -34,9 +34,9 @@ public class NormalInvaderBullets extends LinkedList<NormalInvaderBullet> implem
 }
 
 
-class NormalInvaderBullet extends Bullet {
+class NormalBullet extends Bullet {
 
-    public NormalInvaderBullet(int x, int y) {
+    public NormalBullet(int x, int y) {
         super(x, y);
     }
 

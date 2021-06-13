@@ -5,6 +5,7 @@ import com.company.model.game.player.Player;
 import com.company.ui.UI;
 
 import java.awt.*;
+import java.util.Random;
 
 
 public abstract class Invader {
@@ -14,14 +15,17 @@ public abstract class Invader {
     protected int score; //score obtained by defeating this invader
     protected int interval; //time from hp to 0 to death
     protected final Graphics g;
+    protected final Random random;
 
-    public Invader(int x, int y) {
+    public Invader(int x, int y, int hp, int score) {
         this.x = x;
         this.y = y;
         this.dead = false;
-        this.hp = 1;
+        this.hp = hp;
         this.interval = 20;
+        this.score = score;
         this.g = UI.getUi().graphic();
+        this.random = new Random();
     }
 
     protected boolean isDead() {
@@ -30,10 +34,6 @@ public abstract class Invader {
 
     protected void setDead() {
         dead = true;
-    }
-
-    protected void setScore(int n) {
-        score = n;
     }
 
     protected void drawScore() {
@@ -50,7 +50,7 @@ public abstract class Invader {
     }
 
     public abstract void updateInvader();
-    public abstract void drawInvader();
+    protected abstract void drawInvader();
     public abstract boolean bulletHitInvader(PlayerBullet b);
     public abstract boolean hitPlayer(Player p);
 }
