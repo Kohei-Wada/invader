@@ -15,12 +15,6 @@ public class StateStart extends State {
     @Override
     public void stateUpdate(Model model) {
         parseKey();
-
-        try {
-            Thread.sleep(33);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
