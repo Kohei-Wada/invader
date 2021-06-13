@@ -72,18 +72,15 @@ class NormalInvader extends Invader{
     private final NormalInvaderBullets normalInvaderBullets;
     private final Random random;
 
-    private boolean countStart;
-    private int deathCount;
-
     public NormalInvader(int x, int y, NormalInvaders invaders) {
         super(x, y);
+
+        //set score obtained by defeating this invader
         setScore(30);
 
         random = new Random();
         normalInvaderBullets = invaders.getNormalInvaderBullets();
         dead = false;
-        deathCount = -1;
-        countStart = false;
     }
 
     private void firingBullet() {
@@ -91,23 +88,6 @@ class NormalInvader extends Invader{
             normalInvaderBullets.addNormalInvaderBullet(x + 12, y + 5);
         }
     }
-
-    private void drawScore() {
-        g.setColor(Color.WHITE);
-        g.setFont(new Font(String.valueOf(score), Font.PLAIN, 15));
-        g.drawString(String.valueOf(score), x, y);
-    }
-
-    private void startDeathCount() {
-        deathCount = 20;
-        countStart = true;
-    }
-
-    private void count() {
-        if (--deathCount == 0)
-            dead = true;
-    }
-
 
     @Override
     public void drawInvader() {
@@ -121,8 +101,9 @@ class NormalInvader extends Invader{
     public boolean bulletHitInvader(PlayerBullet b) {
         int bx = b.getX();
         int by = b.getY();
-        if (bx >= x && bx <= x + 30 && by >= y && by <= y + 20 && !countStart) {
-            startDeathCount();
+
+        if (bx >= x && bx <= x + 30 && by >= y && by <= y + 20 && hp != 0) {
+            --hp;
             return true;
         }
         return false;
@@ -130,16 +111,18 @@ class NormalInvader extends Invader{
 
     @Override
     public void updateInvader() {
-        if (!countStart) {
+        if (hp != 0) {
             y += 5;
             drawInvader();
             firingBullet();
-        } else {
+        }
+        else if (!dead){
             drawScore();
-            count();
+            if (--interval == 0) {
+                setDead();
+            }
         }
     }
-
 
     @Override
     public boolean hitPlayer(Player p) {

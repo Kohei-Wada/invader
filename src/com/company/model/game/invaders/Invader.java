@@ -10,8 +10,9 @@ import java.awt.*;
 public abstract class Invader {
     protected int x, y;
     protected int hp;
-    protected int score;
     protected boolean dead;
+    protected int score; //score obtained by defeating this invader
+    protected int interval; //time from hp to 0 to death
     protected final Graphics g;
 
     public Invader(int x, int y) {
@@ -19,6 +20,7 @@ public abstract class Invader {
         this.y = y;
         this.dead = false;
         this.hp = 1;
+        this.interval = 20;
         this.g = UI.getUi().graphic();
     }
 
@@ -32,6 +34,12 @@ public abstract class Invader {
 
     protected void setScore(int n) {
         score = n;
+    }
+
+    protected void drawScore() {
+        g.setColor(Color.WHITE);
+        g.setFont(new Font(String.valueOf(score), Font.PLAIN, 15));
+        g.drawString(String.valueOf(score), x, y);
     }
 
     protected int getY() {
