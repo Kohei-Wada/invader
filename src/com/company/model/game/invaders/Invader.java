@@ -20,10 +20,10 @@ public abstract class Invader {
     public Invader(int x, int y, int hp, int score) {
         this.x = x;
         this.y = y;
-        this.dead = false;
         this.hp = hp;
-        this.interval = 20;
         this.score = score;
+        this.dead = false;
+        this.interval = 20;
         this.g = UI.getUi().graphic();
         this.random = new Random();
     }

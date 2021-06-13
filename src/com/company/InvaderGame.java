@@ -7,11 +7,8 @@ import java.util.ArrayList;
 
 public class InvaderGame {
     private static InvaderGame game = new InvaderGame();
-    private ArrayList<IGObserver> observers = null;
+    private final ArrayList<IGObserver> observers;
     private boolean active = false;
-
-    private Model model;
-    private UI ui;
 
     public static InvaderGame getGame() {
         if (game == null)
@@ -28,19 +25,22 @@ public class InvaderGame {
         observers.add(o);
     }
 
-    public void removeObserver(IGObserver o) {
-        observers.remove(o);
-    }
-
-    public void run() {
+    //TODO program IGObservers as thread
+    //TODO add FPS code
+    public synchronized void run() {
         while (active) {
             observers.forEach(IGObserver::observerUpdate);
+            try {
+                wait(30);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public void gameInit() {
-        model = Model.getModel();
-        ui = UI.getUi();
+        Model model = Model.getModel();
+        UI ui = UI.getUi();
         model.setKeys(ui.getKeys());
         active = true;
     }

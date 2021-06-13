@@ -60,6 +60,7 @@ public class UI extends JFrame implements IGObserver{
     public void observerUpdate() {
         g.clearRect(0, 0, wid, hgt);
         panel.draw();
+
     }
 }
 

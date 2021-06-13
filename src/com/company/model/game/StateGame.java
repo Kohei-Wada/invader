@@ -55,18 +55,14 @@ public class StateGame extends State {
             model.setCurrentState(new StateGameOver(model));
         }
 
-        try {
-            Thread.sleep(33);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 
     @Override
     public void parseKey() {
         if (keys.isPressed(KeyEvent.VK_Q))
             System.exit(0);
+        if (keys.isPressed(KeyEvent.VK_R))
+            model.setCurrentState(new StateGame(model));
 
         if (keys.isPressed(KeyEvent.VK_LEFT))
             player.addX(-8);
