@@ -24,7 +24,7 @@ public class PlayerBullet extends Bullet {
 
     //Never used
     @Override
-    public boolean hitPlayer(Player p) {
+    public boolean hitsPlayer(Player p) {
         return false;
     }
 }

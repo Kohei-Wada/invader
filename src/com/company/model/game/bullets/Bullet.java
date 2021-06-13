@@ -25,5 +25,5 @@ public abstract class Bullet {
 
     public abstract void drawBullet();
     public abstract void updateBullet();
-    public abstract boolean hitPlayer(Player p);
+    public abstract boolean hitsPlayer(Player p);
 }

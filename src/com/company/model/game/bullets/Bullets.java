@@ -4,5 +4,5 @@ import com.company.model.game.player.Player;
 
 public interface Bullets {
     void updateBullets();
-    boolean bulletHitPlayer(Player p);
+    boolean bulletsHitPlayer(Player p);
 }

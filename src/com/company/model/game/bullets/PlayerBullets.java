@@ -35,7 +35,7 @@ public class PlayerBullets extends LinkedList<PlayerBullet> implements Bullets{
 
     //Never used method
     @Override
-    public boolean bulletHitPlayer(Player p) {
+    public boolean bulletsHitPlayer(Player p) {
         return false;
     }
 

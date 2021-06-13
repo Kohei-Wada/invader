@@ -73,7 +73,7 @@ public class Player implements SGObserver {
     public void updateSGO(StateGame sg) {
         if (invadersManager.invaderHitsPlayer(this))
             dead = true;
-        if (bulletsManager.bulletHitsPlayer(this))
+        if (bulletsManager.bulletsHitPlayer(this))
             dead = true;
 
         drawPlayer();

@@ -19,8 +19,8 @@ public class BulletsManager implements SGObserver {
         allBullets.add(b);
     }
 
-    public boolean bulletHitsPlayer(Player p) {
-        return allBullets.stream().anyMatch(v -> v.bulletHitPlayer(p));
+    public boolean bulletsHitPlayer(Player p) {
+        return allBullets.stream().anyMatch(v -> v.bulletsHitPlayer(p));
     }
 
     @Override

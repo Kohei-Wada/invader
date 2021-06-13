@@ -20,8 +20,8 @@ public class NormalInvaderBullets extends LinkedList<NormalInvaderBullet> implem
     }
 
     @Override
-    public boolean bulletHitPlayer(Player p) {
-        return stream().anyMatch(b -> b.hitPlayer(p));
+    public boolean bulletsHitPlayer(Player p) {
+        return stream().anyMatch(b -> b.hitsPlayer(p));
     }
 
     public void addNormalInvaderBullet(int x, int y) {
@@ -53,7 +53,7 @@ class NormalInvaderBullet extends Bullet {
     }
 
     @Override
-    public boolean hitPlayer(Player p) {
+    public boolean hitsPlayer(Player p) {
         int px = p.getX();
         int py = p.getY();
         return x >= px && x <= px + 30 && y >= py && y <= py + 20;
