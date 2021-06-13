@@ -12,7 +12,7 @@ public abstract class Invader {
     protected int x, y;
     protected int hp;
     protected boolean dead;
-    protected int score; //score obtained by defeating this invader
+    protected int score;    //score obtained by defeating this invader
     protected int interval; //time from hp to 0 to death
     protected final Graphics g;
     protected final Random random;
@@ -38,7 +38,9 @@ public abstract class Invader {
 
     protected void drawScore() {
         g.setColor(Color.WHITE);
-        g.setFont(new Font(String.valueOf(score), Font.PLAIN, 15));
+
+        //UI will flick with this code, so I erased it.
+        //g.setFont(new Font(String.valueOf(score), Font.PLAIN, 15));
         g.drawString(String.valueOf(score), x, y);
     }
 

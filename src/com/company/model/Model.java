@@ -14,7 +14,7 @@ public class Model implements IGObserver {
 
     private static Model model = new Model();
     private State state;
-    private  Result result;
+    private Result result;
     private Keys keys;
 
     public static Model getModel() {

@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class UI extends JFrame implements IGObserver {
+public class UI extends JFrame implements IGObserver{
     private static UI ui = null;
 
     private final int wid = 800;
@@ -56,14 +56,9 @@ public class UI extends JFrame implements IGObserver {
         return g;
     }
 
-    public void clearUI() {
-        g.setColor(Color.black);
-        g.fillRect(0, 0, wid, hgt);
-    }
-
     @Override
     public void observerUpdate() {
-        clearUI();
+        g.clearRect(0, 0, wid, hgt);
         panel.draw();
     }
 }
@@ -84,7 +79,7 @@ class ScreenPanel extends JPanel {
     }
 
     public void draw() {
-        this.repaint();
+        repaint();
     }
 
     public Graphics graphic() {
