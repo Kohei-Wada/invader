@@ -2,8 +2,8 @@ package com.company.model.game.invaders;
 
 import com.company.model.game.SGObserver;
 import com.company.model.game.StateGame;
+import com.company.model.game.bullets.Bullet;
 import com.company.model.game.bullets.BulletsManager;
-import com.company.model.game.bullets.PlayerBullet;
 import com.company.model.game.player.Player;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class InvadersManager implements SGObserver {
         return allInvaders.stream().anyMatch(i -> i.invaderHitPlayer(p));
     }
 
-    public boolean bulletHistInvader(PlayerBullet b) {
+    public boolean bulletHistInvader(Bullet b) {
         return allInvaders.stream().anyMatch(i -> i.bulletHitsInvader(b));
     }
 

@@ -1,6 +1,6 @@
 package com.company.model.game.invaders;
 
-import com.company.model.game.bullets.PlayerBullet;
+import com.company.model.game.bullets.Bullet;
 import com.company.model.game.player.Player;
 import com.company.ui.UI;
 
@@ -53,6 +53,6 @@ public abstract class Invader {
 
     public abstract void updateInvader();
     protected abstract void drawInvader();
-    public abstract boolean bulletHitInvader(PlayerBullet b);
+    public abstract boolean bulletHitInvader(Bullet b);
     public abstract boolean hitPlayer(Player p);
 }

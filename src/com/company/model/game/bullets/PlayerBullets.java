@@ -3,25 +3,24 @@ package com.company.model.game.bullets;
 import com.company.model.game.invaders.InvadersManager;
 import com.company.model.game.player.Player;
 
-import java.util.LinkedList;
+import java.awt.*;
 
-public class PlayerBullets extends LinkedList<PlayerBullet> implements Bullets{
 
+public class PlayerBullets extends Bullets {
     private final InvadersManager manager;
 
     public PlayerBullets(InvadersManager m) {
+        super();
         manager = m;
     }
 
     @Override
     public void updateBullets() {
-        forEach(PlayerBullet::updateBullet);
-
+        bullets.forEach(Bullet::updateBullet);
         //remove bullets that has hit to invader
-        removeIf(manager::bulletHistInvader);
-
+        bullets.removeIf(manager::bulletHistInvader);
         //remove bullets that has gone off the stage
-        removeIf(b -> b.getY() < 0);
+        bullets.removeIf(b -> b.getY() < 0);
     }
 
     //Never used
@@ -32,7 +31,25 @@ public class PlayerBullets extends LinkedList<PlayerBullet> implements Bullets{
 
     @Override
     public void addBullet(int x, int y) {
-        add(new PlayerBullet(x, y));
+        bullets.add(new Bullet(x, y) {
+            @Override
+            public void drawBullet() {
+                g.setColor(Color.blue);
+                g.fillRect(x, y, 5, 5);
+            }
+
+            @Override
+            public void updateBullet() {
+                drawBullet();
+                y -= 10;
+            }
+
+            //Never used
+            @Override
+            public boolean hitsPlayer(Player p) {
+                return false;
+            }
+        });
     }
 }
 

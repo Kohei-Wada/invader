@@ -1,7 +1,7 @@
 package com.company.model.game.invaders;
 
+import com.company.model.game.bullets.Bullet;
 import com.company.model.game.bullets.NormalBullets;
-import com.company.model.game.bullets.PlayerBullet;
 import com.company.model.game.player.Player;
 import com.company.ui.UI;
 
@@ -41,7 +41,7 @@ public class NormalInvaders extends LinkedList<NormalInvader> implements Invader
     }
 
     @Override
-    public boolean bulletHitsInvader(PlayerBullet b) {
+    public boolean bulletHitsInvader(Bullet b) {
         return stream().anyMatch(i -> i.bulletHitInvader(b));
     }
 
@@ -79,7 +79,7 @@ class NormalInvader extends Invader{
 
     //this method is called when a bullet hits
     @Override
-    public boolean bulletHitInvader(PlayerBullet b) {
+    public boolean bulletHitInvader(Bullet b) {
         int bx = b.getX();
         int by = b.getY();
 
