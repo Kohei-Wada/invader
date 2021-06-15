@@ -9,7 +9,6 @@ public class InvaderGame {
     private static InvaderGame game = new InvaderGame();
     private final ArrayList<IGObserver> observers;
     private boolean active = false;
-    public final int fps = 50;
 
     public synchronized static InvaderGame getGame() {
         if (game == null)
@@ -27,12 +26,20 @@ public class InvaderGame {
     }
 
     //TODO program IGObservers as thread
-    public synchronized void run() {
+    public void run() {
+        long startTime;
+
         while (active) {
+            startTime = System.currentTimeMillis();
             observers.forEach(IGObserver::observerUpdate);
+
             try {
-                wait(1000 / fps);
-            } catch (Exception e) {
+                long runTime = System.currentTimeMillis() - startTime;
+                int fps = 50;
+                if (runTime < (1000 / fps))
+                    Thread.sleep((1000 / fps) - runTime);
+            }
+            catch (Exception e) {
                 e.printStackTrace();
             }
         }
