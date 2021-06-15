@@ -23,7 +23,6 @@ public class PlayerBullets extends Bullets {
         bullets.removeIf(b -> b.getY() < 0);
     }
 
-    //Never used
     @Override
     public boolean bulletsHitPlayer(Player p) {
         return false;
@@ -44,7 +43,6 @@ public class PlayerBullets extends Bullets {
                 y -= 10;
             }
 
-            //Never used
             @Override
             public boolean hitsPlayer(Player p) {
                 return false;
