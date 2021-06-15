@@ -23,7 +23,9 @@ public class NormalBullets extends LinkedList<NormalBullet> implements Bullets{
     public boolean bulletsHitPlayer(Player p) {
         return stream().anyMatch(b -> b.hitsPlayer(p));
     }
-    public void addNormalBullet(int x, int y) {
+
+    @Override
+    public void addBullet(int x, int y) {
         add(new NormalBullet(x, y));
     }
 }

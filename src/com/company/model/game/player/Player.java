@@ -65,7 +65,7 @@ public class Player implements SGObserver {
     }
 
     public void firingBullet() {
-        playerBullets.addPlayerBullet(x + 12, y);
+        playerBullets.addBullet(x + 12, y);
     }
 
     public boolean isDead() {

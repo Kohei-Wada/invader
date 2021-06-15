@@ -30,7 +30,8 @@ public class PlayerBullets extends LinkedList<PlayerBullet> implements Bullets{
         return false;
     }
 
-    public void addPlayerBullet(int x, int y) {
+    @Override
+    public void addBullet(int x, int y) {
         add(new PlayerBullet(x, y));
     }
 }

@@ -66,7 +66,7 @@ class NormalInvader extends Invader{
 
     private void firingBullet() {
         if (random.nextInt(20) == 1) {
-            normalInvaderBullets.addNormalBullet(x + 12, y + 5);
+            normalInvaderBullets.addBullet(x + 12, y + 5);
         }
     }
 
