@@ -100,7 +100,7 @@ class NormalInvader extends Invader{
         else if (!dead){
             drawScore();
             if (--interval == 0) {
-                setDead();
+                dead = true;
             }
         }
     }
@@ -109,7 +109,7 @@ class NormalInvader extends Invader{
     public boolean hitPlayer(Player p) {
         int px = p.getX();
         int py = p.getY();
-        return (x >= px && x <= px + 30 && y >= py && y <= py + 20) ||
-                (x + 30 >= px && x + 30 <= px + 30 && y + 20 >= py && y + 20 <= py + 20);
+        return hp != 0 && ((x >= px && x <= px + 30 && y >= py && y <= py + 20) ||
+                (x + 30 >= px && x + 30 <= px + 30 && y + 20 >= py && y + 20 <= py + 20));
     }
 }
