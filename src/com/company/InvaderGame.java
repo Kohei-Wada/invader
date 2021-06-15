@@ -6,9 +6,12 @@ import com.company.ui.UI;
 import java.util.ArrayList;
 
 public class InvaderGame {
+    //Singleton
+
     private static InvaderGame game = new InvaderGame();
     private final ArrayList<IGObserver> observers;
     private boolean active = false;
+    private final int fps = 60;
 
     public synchronized static InvaderGame getGame() {
         if (game == null)
@@ -25,19 +28,12 @@ public class InvaderGame {
         observers.add(o);
     }
 
-    //TODO program IGObservers as thread
-    public void run() {
-        long startTime;
+    public synchronized void run() {
 
         while (active) {
-            startTime = System.currentTimeMillis();
             observers.forEach(IGObserver::observerUpdate);
-
             try {
-                long runTime = System.currentTimeMillis() - startTime;
-                int fps = 50;
-                if (runTime < (1000 / fps))
-                    Thread.sleep((1000 / fps) - runTime);
+                wait(1000/ fps);
             }
             catch (Exception e) {
                 e.printStackTrace();

@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class UI extends JFrame implements IGObserver{
+    //Singleton
+
     private static UI ui = null;
 
     private final int wid = 800;
