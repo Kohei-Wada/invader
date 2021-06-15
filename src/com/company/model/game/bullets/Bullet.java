@@ -7,11 +7,14 @@ import java.awt.*;
 
 public abstract class Bullet {
     protected int x, y;
+    protected int vx, vy; //velocity vector unit
     protected final Graphics g;
 
-    public Bullet(int x, int y) {
+    public Bullet(int x, int y, int vx, int vy) {
         this.x = x;
         this.y = y;
+        this.vx = vx;
+        this.vy = vy;
         this.g = UI.getUi().graphic();
     }
 

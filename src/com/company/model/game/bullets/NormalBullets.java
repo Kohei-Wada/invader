@@ -26,7 +26,7 @@ public class NormalBullets extends Bullets{
 
     @Override
     public void addBullet(int x, int y) {
-        bullets.add(new Bullet(x, y) {
+        bullets.add(new Bullet(x, y, 0, 8) {
             @Override
             public void drawBullet() {
                 g.setColor(Color.red);
@@ -36,7 +36,7 @@ public class NormalBullets extends Bullets{
             @Override
             public void updateBullet() {
                 drawBullet();
-                y += 10;
+                y += vy;
             }
 
             @Override
