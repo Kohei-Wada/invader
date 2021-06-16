@@ -17,13 +17,14 @@ public class Player implements SGObserver {
 
     private final Graphics g;
     private final int stageX, stageY;
-    private final Bullets playerBullets;
+    private final Bullets currentBullets;
     private final InvadersManager invadersManager;
     private final BulletsManager bulletsManager;
 
 
     public Player(StateGame sg) {
         sg.addObserver(this);
+
         g = UI.getUi().graphic();
         stageX = UI.getUi().getWid();
         stageY = UI.getUi().getHgt();
@@ -34,12 +35,14 @@ public class Player implements SGObserver {
         hp = 1;
         dead = false;
 
+
         bulletsManager = sg.getBulletsManager();
         invadersManager = sg.getInvadersManager();
 
+        //bullets creation and registering
         PBFactory factory = new PBFactory(invadersManager);
-        playerBullets = factory.create(BulletTypes.SHOTGUN);
-        bulletsManager.addBullets(playerBullets);
+        currentBullets = factory.create(BulletTypes.SHOTGUN);
+        bulletsManager.addBullets(currentBullets);
     }
 
     public int getX() {
@@ -67,11 +70,10 @@ public class Player implements SGObserver {
     }
 
     public void firingBullet() {
-        if (interval > 0) {
+        if (interval > 0)
             --interval;
-        }
         else {
-            playerBullets.addBullet(x + 12, y);
+            currentBullets.addBullet(x + 12, y);
             interval = 8;
         }
     }
@@ -91,7 +93,6 @@ public class Player implements SGObserver {
             damaged();
         if (bulletsManager.bulletsHitPlayer(this))
             damaged();
-
         drawPlayer();
     }
 }

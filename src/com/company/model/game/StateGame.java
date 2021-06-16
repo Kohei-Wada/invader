@@ -50,8 +50,7 @@ public class StateGame extends State {
         if (!player.isDead()) {
             parseKey();
             observers.forEach(v -> v.updateSGO(this));
-        }
-        else {
+        } else {
             model.setCurrentState(new StateGameOver(model));
         }
 

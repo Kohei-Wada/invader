@@ -8,7 +8,7 @@ import java.awt.*;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class NormalInvaders extends LinkedList<NormalInvader> implements Invaders{
+public class NormalInvaders extends LinkedList<NormalInvader> implements Invaders {
 
     private final Bullets normalBullets;
     private final int sizeX, sizeY;
@@ -55,7 +55,7 @@ public class NormalInvaders extends LinkedList<NormalInvader> implements Invader
     }
 }
 
-class NormalInvader extends Invader{
+class NormalInvader extends Invader {
     //TODO clean death count code
     private final Bullets normalInvaderBullets;
 
@@ -73,7 +73,7 @@ class NormalInvader extends Invader{
     @Override
     protected void drawInvader() {
         g.setColor(Color.red);
-        g.fillRect(x, y , 30, 10);
+        g.fillRect(x, y, 30, 10);
         g.fillRect(x + 10, y + 10, 10, 10);
     }
 
@@ -96,8 +96,7 @@ class NormalInvader extends Invader{
             y += 5;
             drawInvader();
             firingBullet();
-        }
-        else if (!dead){
+        } else if (!dead) {
             drawScore();
             if (--interval == 0) {
                 dead = true;

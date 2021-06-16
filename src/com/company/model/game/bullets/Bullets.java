@@ -13,6 +13,8 @@ public abstract class Bullets {
     }
 
     abstract boolean bulletsHitPlayer(Player p);
+
     abstract void updateBullets();
+
     public abstract void addBullet(int x, int y);
 }

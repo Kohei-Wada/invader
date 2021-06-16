@@ -21,7 +21,7 @@ public class Model implements IGObserver {
         if (model == null) {
             model = new Model();
         }
-        return  model;
+        return model;
     }
 
     private Model() {

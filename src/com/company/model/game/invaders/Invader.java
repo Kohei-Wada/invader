@@ -47,12 +47,16 @@ public abstract class Invader {
     protected int getY() {
         return y;
     }
+
     protected int getX() {
         return x;
     }
 
     public abstract void updateInvader();
+
     protected abstract void drawInvader();
+
     public abstract boolean bulletHitInvader(Bullet b);
+
     public abstract boolean hitPlayer(Player p);
 }

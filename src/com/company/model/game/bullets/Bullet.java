@@ -21,11 +21,14 @@ public abstract class Bullet {
     public int getX() {
         return x;
     }
+
     public int getY() {
         return y;
     }
 
     public abstract void drawBullet();
+
     public abstract void updateBullet();
+
     public abstract boolean hitsPlayer(Player p);
 }

@@ -54,9 +54,7 @@ public class IBFactory {
                     });
                 }
             };
-        }
-
-        else return null;
+        } else return null;
 
     }
 

@@ -16,7 +16,7 @@ public class InvaderGame {
     public synchronized static InvaderGame getGame() {
         if (game == null)
             game = new InvaderGame();
-        return  game;
+        return game;
     }
 
     private InvaderGame() {
@@ -33,9 +33,8 @@ public class InvaderGame {
         while (active) {
             observers.forEach(IGObserver::observerUpdate);
             try {
-                wait(1000/ fps);
-            }
-            catch (Exception e) {
+                wait(1000 / fps);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

@@ -5,6 +5,7 @@ import com.company.model.game.player.Player;
 
 import java.awt.*;
 
+
 //Player Bullets Factory
 public class PBFactory {
 
@@ -15,6 +16,7 @@ public class PBFactory {
     }
 
     public Bullets create(BulletTypes type) {
+
         if (type == BulletTypes.NORMAL) {
             return new Bullets() {
                 private final InvadersManager invadersManager;
@@ -28,6 +30,7 @@ public class PBFactory {
                 boolean bulletsHitPlayer(Player p) {
                     return false;
                 }
+
                 @Override
                 void updateBullets() {
                     bullets.forEach(Bullet::updateBullet);
@@ -61,8 +64,7 @@ public class PBFactory {
                 }
 
             };
-        }
-        else if (type == BulletTypes.SHOTGUN) {
+        } else if (type == BulletTypes.SHOTGUN) {
             return new Bullets() {
 
                 private final InvadersManager invadersManager;
@@ -88,13 +90,13 @@ public class PBFactory {
 
                 @Override
                 public void addBullet(int x, int y) {
-                    bullets.add(new ShotGun(x-3, y, -3, -6));
-                    bullets.add(new ShotGun(x-2, y, -2, -7));
-                    bullets.add(new ShotGun(x-1, y, -1, -8));
+                    bullets.add(new ShotGun(x - 3, y, -3, -6));
+                    bullets.add(new ShotGun(x - 2, y, -2, -7));
+                    bullets.add(new ShotGun(x - 1, y, -1, -8));
                     bullets.add(new ShotGun(x, y, 0, -9));
-                    bullets.add(new ShotGun(x+1, y, 1, -8));
-                    bullets.add(new ShotGun(x+2, y, 2, -7));
-                    bullets.add(new ShotGun(x+3, y, 3, -6));
+                    bullets.add(new ShotGun(x + 1, y, 1, -8));
+                    bullets.add(new ShotGun(x + 2, y, 2, -7));
+                    bullets.add(new ShotGun(x + 3, y, 3, -6));
                 }
 
                 class ShotGun extends Bullet {
@@ -124,8 +126,7 @@ public class PBFactory {
                 }
             };
 
-        }
-        else return null;
+        } else return null;
 
     }
 

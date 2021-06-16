@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class UI extends JFrame implements IGObserver{
+public class UI extends JFrame implements IGObserver {
     //Singleton
 
     private static UI ui = null;
