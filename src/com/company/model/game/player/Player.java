@@ -10,39 +10,45 @@ import java.awt.*;
 
 public class Player implements SGObserver {
 
-    private boolean dead;
-    private int hp;
-    private int x, y;
-    private int interval;
+    private final int             interval;
+    private final Graphics        g;
+    private final int             stageX;
+    private final int             stageY;
 
-    private final Graphics g;
-    private final int stageX, stageY;
-    private final Bullets currentBullets;
+    private boolean               dead;
+    private int                   hp;
+    private int                   x;
+    private int                   y;
+    private int                   counter;
+    private Bullets               currentBullets;
+
+
     private final InvadersManager invadersManager;
-    private final BulletsManager bulletsManager;
+    private final BulletsManager  bulletsManager;
 
 
     public Player(StateGame sg) {
         sg.addObserver(this);
 
-        g = UI.getUi().graphic();
+        interval = 8;
+        g      = UI.getUi().graphic();
         stageX = UI.getUi().getWid();
         stageY = UI.getUi().getHgt();
 
-        x = stageX / 2;
-        y = stageY / 3 * 2;
-        interval = 8;
-        hp = 1;
-        dead = false;
+        x       = stageX / 2;
+        y       = stageY / 3 * 2;
+        hp      = 1;
+        dead    = false;
+        counter = 0;
 
-
-        bulletsManager = sg.getBulletsManager();
+        bulletsManager  = sg.getBulletsManager();
         invadersManager = sg.getInvadersManager();
 
         //bullets creation and registering
         PBFactory factory = new PBFactory(invadersManager);
         currentBullets = factory.create(BulletTypes.SHOTGUN);
         bulletsManager.addBullets(currentBullets);
+
     }
 
     public int getX() {
@@ -70,11 +76,11 @@ public class Player implements SGObserver {
     }
 
     public void firingBullet() {
-        if (interval > 0)
-            --interval;
+        if (counter > 0)
+            --counter;
         else {
             currentBullets.addBullet(x + 12, y);
-            interval = 8;
+            counter = interval;
         }
     }
 
@@ -85,6 +91,10 @@ public class Player implements SGObserver {
     private void damaged() {
         if (--hp == 0)
             dead = true;
+    }
+
+    private void setCurrentBullets(Bullets bs) {
+        currentBullets = bs;
     }
 
     @Override

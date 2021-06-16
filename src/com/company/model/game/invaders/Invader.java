@@ -9,31 +9,29 @@ import java.util.Random;
 
 
 public abstract class Invader {
-    protected int x, y;
-    protected int hp;
-    protected boolean dead;
-    protected int score;    //score obtained by defeating this invader
-    protected int interval; //time from hp to 0 to death
+    protected int            x;
+    protected int            y;
+    protected int            hp;
+    protected boolean        dead;
+    protected int            score;     //score obtained by defeating this invader
+    protected int            interval;  //time from hp to 0 to death
+
     protected final Graphics g;
-    protected final Random random;
+    protected final Random   random;
 
     public Invader(int x, int y, int hp, int score) {
-        this.x = x;
-        this.y = y;
-        this.hp = hp;
-        this.score = score;
-        this.dead = false;
+        this.x        = x;
+        this.y        = y;
+        this.hp       = hp;
+        this.score    = score;
+        this.dead     = false;
         this.interval = 20;
-        this.g = UI.getUi().graphic();
-        this.random = new Random();
+        this.g        = UI.getUi().graphic();
+        this.random   = new Random();
     }
 
     protected boolean isDead() {
         return dead;
-    }
-
-    protected void setDead() {
-        dead = true;
     }
 
     protected void drawScore() {

@@ -1,14 +1,12 @@
 package com.company.model.gameover;
 
 import com.company.model.Model;
-import com.company.model.Result;
 import com.company.model.State;
 import com.company.model.game.StateGame;
 
 import java.awt.event.KeyEvent;
 
 public class StateGameOver extends State {
-
 
     public StateGameOver(Model model) {
         super(model);

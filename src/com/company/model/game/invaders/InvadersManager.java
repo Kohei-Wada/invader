@@ -13,9 +13,11 @@ public class InvadersManager implements SGObserver {
     private final BulletsManager bulletsManager;
 
     public InvadersManager(StateGame sg) {
+
         sg.addObserver(this);
         allInvaders = new ArrayList<>();
         bulletsManager = sg.getBulletsManager();
+
         initAllInvaders();
     }
 

@@ -11,7 +11,6 @@ public class InvaderGame {
     private static InvaderGame game = new InvaderGame();
     private final ArrayList<IGObserver> observers;
     private boolean active = false;
-    private final int fps = 60;
 
     public synchronized static InvaderGame getGame() {
         if (game == null)
@@ -29,6 +28,7 @@ public class InvaderGame {
     }
 
     public synchronized void run() {
+        int fps = 60;
 
         while (active) {
             observers.forEach(IGObserver::observerUpdate);
@@ -38,6 +38,10 @@ public class InvaderGame {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public void gameInit() {

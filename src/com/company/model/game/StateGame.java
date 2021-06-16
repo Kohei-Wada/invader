@@ -27,9 +27,9 @@ public class StateGame extends State {
         program will die if you make a mistake
         in the SGObservers initialization order
          */
-        bulletsManager = new BulletsManager(this);
+        bulletsManager  = new BulletsManager(this);
         invadersManager = new InvadersManager(this);
-        player = new Player(this);
+        player          = new Player(this);
     }
 
     public InvadersManager getInvadersManager() {

@@ -11,11 +11,11 @@ public abstract class Bullet {
     protected final Graphics g;
 
     public Bullet(int x, int y, int vx, int vy) {
-        this.x = x;
-        this.y = y;
+        this.x  = x;
+        this.y  = y;
         this.vx = vx;
         this.vy = vy;
-        this.g = UI.getUi().graphic();
+        this.g  = UI.getUi().graphic();
     }
 
     public int getX() {

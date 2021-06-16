@@ -12,6 +12,7 @@ public abstract class Bullets {
         bullets = new LinkedList<>();
     }
 
+    //this method is called to see if bullet hit player
     abstract boolean bulletsHitPlayer(Player p);
 
     abstract void updateBullets();

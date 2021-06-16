@@ -11,16 +11,17 @@ import java.util.Random;
 public class NormalInvaders extends LinkedList<NormalInvader> implements Invaders {
 
     private final Bullets normalBullets;
-    private final int sizeX, sizeY;
-    private final Random random;
+    private final Random  random;
+    private final int     sizeX;
+    private final int     sizeY;
 
     public NormalInvaders(InvadersManager m) {
         IBFactory factory = new IBFactory();
-        normalBullets = factory.create(BulletTypes.NORMAL);
-        UI ui = UI.getUi();
-        sizeX = ui.getWid();
-        sizeY = ui.getHgt();
-        random = new Random();
+        normalBullets     = factory.create(BulletTypes.NORMAL);
+        sizeX             = UI.getUi().getWid();
+        sizeY             = UI.getUi().getHgt();
+        random            = new Random();
+
         m.addInvaders(this);
         m.getBulletsManager().addBullets(normalBullets);
     }
@@ -32,10 +33,8 @@ public class NormalInvaders extends LinkedList<NormalInvader> implements Invader
         }
 
         forEach(NormalInvader::updateInvader);
-
         //remove dead invaders
         removeIf(NormalInvader::isDead);
-
         //remove invaders that has gone off the stage
         removeIf(invader -> invader.getY() > sizeY);
     }
@@ -56,17 +55,16 @@ public class NormalInvaders extends LinkedList<NormalInvader> implements Invader
 }
 
 class NormalInvader extends Invader {
-    //TODO clean death count code
-    private final Bullets normalInvaderBullets;
+    private final Bullets normalBullets;
 
     public NormalInvader(int x, int y, NormalInvaders invaders) {
         super(x, y, 1, 30);
-        normalInvaderBullets = invaders.getNormalInvaderBullets();
+        normalBullets = invaders.getNormalInvaderBullets();
     }
 
     private void firingBullet() {
         if (random.nextInt(20) == 1) {
-            normalInvaderBullets.addBullet(x + 12, y + 5);
+            normalBullets.addBullet(x + 12, y + 5);
         }
     }
 
@@ -104,6 +102,8 @@ class NormalInvader extends Invader {
         }
     }
 
+
+    //collision detection
     @Override
     public boolean hitPlayer(Player p) {
         int px = p.getX();
