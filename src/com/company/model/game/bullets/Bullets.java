@@ -12,9 +12,7 @@ public abstract class Bullets {
         bullets = new LinkedList<>();
     }
 
-    void updateBullets() {
-        bullets.forEach(Bullet::updateBullet);
-    }
-    abstract void addBullet(int x, int y);
     abstract boolean bulletsHitPlayer(Player p);
+    abstract void updateBullets();
+    public abstract void addBullet(int x, int y);
 }

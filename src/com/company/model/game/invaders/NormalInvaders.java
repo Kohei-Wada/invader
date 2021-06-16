@@ -1,7 +1,6 @@
 package com.company.model.game.invaders;
 
-import com.company.model.game.bullets.Bullet;
-import com.company.model.game.bullets.NormalBullets;
+import com.company.model.game.bullets.*;
 import com.company.model.game.player.Player;
 import com.company.ui.UI;
 
@@ -11,12 +10,13 @@ import java.util.Random;
 
 public class NormalInvaders extends LinkedList<NormalInvader> implements Invaders{
 
-    private final NormalBullets normalBullets;
+    private final Bullets normalBullets;
     private final int sizeX, sizeY;
     private final Random random;
 
     public NormalInvaders(InvadersManager m) {
-        normalBullets = new NormalBullets();
+        IBFactory factory = new IBFactory();
+        normalBullets = factory.create(BulletTypes.NORMAL);
         UI ui = UI.getUi();
         sizeX = ui.getWid();
         sizeY = ui.getHgt();
@@ -50,14 +50,14 @@ public class NormalInvaders extends LinkedList<NormalInvader> implements Invader
         return stream().anyMatch(i -> i.hitPlayer(p));
     }
 
-    public NormalBullets getNormalInvaderBullets() {
+    public Bullets getNormalInvaderBullets() {
         return normalBullets;
     }
 }
 
 class NormalInvader extends Invader{
     //TODO clean death count code
-    private final NormalBullets normalInvaderBullets;
+    private final Bullets normalInvaderBullets;
 
     public NormalInvader(int x, int y, NormalInvaders invaders) {
         super(x, y, 1, 30);

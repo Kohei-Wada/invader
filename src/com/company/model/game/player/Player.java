@@ -2,8 +2,7 @@ package com.company.model.game.player;
 
 import com.company.model.game.SGObserver;
 import com.company.model.game.StateGame;
-import com.company.model.game.bullets.BulletsManager;
-import com.company.model.game.bullets.PlayerBullets;
+import com.company.model.game.bullets.*;
 import com.company.model.game.invaders.InvadersManager;
 import com.company.ui.UI;
 
@@ -17,7 +16,7 @@ public class Player implements SGObserver {
 
     private final Graphics g;
     private final int stageX, stageY;
-    private final PlayerBullets playerBullets;
+    private final Bullets playerBullets;
     private final InvadersManager invadersManager;
     private final BulletsManager bulletsManager;
 
@@ -36,7 +35,8 @@ public class Player implements SGObserver {
         bulletsManager = sg.getBulletsManager();
         invadersManager = sg.getInvadersManager();
 
-        playerBullets = new PlayerBullets(invadersManager);
+        PBFactory factory = new PBFactory(invadersManager);
+        playerBullets = factory.create(BulletTypes.NORMAL);
         bulletsManager.addBullets(playerBullets);
     }
 
