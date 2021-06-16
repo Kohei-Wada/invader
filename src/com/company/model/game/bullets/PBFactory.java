@@ -52,6 +52,7 @@ public class PBFactory {
                             y += vy;
                         }
 
+                        //Never used
                         @Override
                         public boolean hitsPlayer(Player p) {
                             return false;
@@ -66,6 +67,7 @@ public class PBFactory {
 
                 private final InvadersManager invadersManager;
 
+                //initialization
                 {
                     invadersManager = manager;
                 }
@@ -114,6 +116,7 @@ public class PBFactory {
                         y += vy;
                     }
 
+                    //Never used
                     @Override
                     public boolean hitsPlayer(Player p) {
                         return false;
