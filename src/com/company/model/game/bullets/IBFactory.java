@@ -14,6 +14,7 @@ public class IBFactory {
             return new Bullets() {
                 private final int stageY;
 
+                //initialization
                 {
                     stageY = UI.getUi().getHgt();
                 }

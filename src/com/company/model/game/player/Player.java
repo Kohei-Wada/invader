@@ -13,6 +13,7 @@ public class Player implements SGObserver {
     private boolean dead;
     private int hp;
     private int x, y;
+    private int interval;
 
     private final Graphics g;
     private final int stageX, stageY;
@@ -29,6 +30,7 @@ public class Player implements SGObserver {
 
         x = stageX / 2;
         y = stageY / 3 * 2;
+        interval = 8;
         hp = 1;
         dead = false;
 
@@ -36,7 +38,7 @@ public class Player implements SGObserver {
         invadersManager = sg.getInvadersManager();
 
         PBFactory factory = new PBFactory(invadersManager);
-        playerBullets = factory.create(BulletTypes.NORMAL);
+        playerBullets = factory.create(BulletTypes.SHOTGUN);
         bulletsManager.addBullets(playerBullets);
     }
 
@@ -65,7 +67,13 @@ public class Player implements SGObserver {
     }
 
     public void firingBullet() {
-        playerBullets.addBullet(x + 12, y);
+        if (interval > 0) {
+            --interval;
+        }
+        else {
+            playerBullets.addBullet(x + 12, y);
+            interval = 8;
+        }
     }
 
     public boolean isDead() {
