@@ -9,8 +9,9 @@ public class InvaderGame {
     //Singleton
 
     private static InvaderGame game = new InvaderGame();
+
     private final ArrayList<IGObserver> observers;
-    private boolean active = false;
+    private boolean                     active;
 
     public synchronized static InvaderGame getGame() {
         if (game == null)
@@ -38,10 +39,6 @@ public class InvaderGame {
                 e.printStackTrace();
             }
         }
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
     public void gameInit() {

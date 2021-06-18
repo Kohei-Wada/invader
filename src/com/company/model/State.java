@@ -3,7 +3,7 @@ package com.company.model;
 import com.company.ui.Keys;
 
 public abstract class State {
-    protected Keys keys;
+    protected Keys  keys;
     protected Model model;
 
     public State(Model m) {

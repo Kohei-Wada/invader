@@ -45,6 +45,7 @@ public class Player implements SGObserver {
         invadersManager = sg.getInvadersManager();
 
         //bullets creation and registering
+        //TODO implement a mechanism allow player to easily change bullets
         PBFactory factory = new PBFactory(invadersManager);
         currentBullets = factory.create(BulletTypes.SHOTGUN);
         bulletsManager.addBullets(currentBullets);

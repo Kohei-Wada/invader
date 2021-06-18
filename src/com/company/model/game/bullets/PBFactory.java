@@ -8,6 +8,7 @@ import java.awt.*;
 
 //Player Bullets Factory
 public class PBFactory {
+    //I don't really like this factory. dirty.
 
     private final InvadersManager manager;
 

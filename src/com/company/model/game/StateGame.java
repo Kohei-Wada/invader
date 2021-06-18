@@ -13,9 +13,9 @@ import java.util.ArrayList;
 public class StateGame extends State {
 
     private final ArrayList<SGObserver> observers;
-    private final Player player;
-    private final BulletsManager bulletsManager;
-    private final InvadersManager invadersManager;
+    private final Player                player;
+    private final BulletsManager        bulletsManager;
+    private final InvadersManager       invadersManager;
 
     public StateGame(Model m) {
         super(m);
@@ -63,15 +63,15 @@ public class StateGame extends State {
         if (keys.isPressed(KeyEvent.VK_R))
             model.setCurrentState(new StateGame(model));
 
-        if (keys.isPressed(KeyEvent.VK_H) || keys.isPressed(KeyEvent.VK_LEFT))
+        if (keys.isPressed(KeyEvent.VK_H)   || keys.isPressed(KeyEvent.VK_LEFT))
             player.addX(-8);
         if (keys.isPressed((KeyEvent.VK_L)) || keys.isPressed(KeyEvent.VK_RIGHT))
             player.addX(8);
-        if (keys.isPressed(KeyEvent.VK_K) || keys.isPressed(KeyEvent.VK_UP))
+        if (keys.isPressed(KeyEvent.VK_K)   || keys.isPressed(KeyEvent.VK_UP))
             player.addY(-8);
-        if (keys.isPressed(KeyEvent.VK_J) || keys.isPressed(KeyEvent.VK_DOWN))
+        if (keys.isPressed(KeyEvent.VK_J)   || keys.isPressed(KeyEvent.VK_DOWN))
             player.addY(8);
-        if (keys.isPressed(KeyEvent.VK_F) || keys.isPressed(KeyEvent.VK_SPACE))
+        if (keys.isPressed(KeyEvent.VK_F)   || keys.isPressed(KeyEvent.VK_SPACE))
             player.firingBullet();
     }
 }

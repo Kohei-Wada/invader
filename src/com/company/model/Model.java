@@ -13,9 +13,10 @@ public class Model implements IGObserver {
     //Sigleton
 
     private static Model model = new Model();
-    private State state;
+
+    private State  state;
     private Result result;
-    private Keys keys;
+    private Keys   keys;
 
     public synchronized static Model getModel() {
         if (model == null) {
