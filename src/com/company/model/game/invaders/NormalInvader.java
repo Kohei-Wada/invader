@@ -7,16 +7,16 @@ import com.company.model.game.player.Player;
 import java.awt.*;
 
 class NormalInvader extends Invader {
-    private final Bullets normalBullets;
+    private final Bullets bullets;
 
     public NormalInvader(int x, int y, Bullets bullets) {
         super(x, y, 1, 30);
-        normalBullets = bullets;
+        this.bullets = bullets;
     }
 
     private void firingBullet() {
         if (random.nextInt(20) == 1)
-            normalBullets.addBullet(x + 12, y + 5);
+            bullets.addBullet(x + 12, y + 5);
     }
 
     @Override
