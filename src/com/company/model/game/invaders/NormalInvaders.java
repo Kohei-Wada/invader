@@ -2,25 +2,17 @@ package com.company.model.game.invaders;
 
 import com.company.model.game.bullets.*;
 import com.company.model.game.player.Player;
-import com.company.ui.UI;
 
 import java.awt.*;
-import java.util.LinkedList;
-import java.util.Random;
 
-public class NormalInvaders extends LinkedList<NormalInvader> implements Invaders {
+public class NormalInvaders extends Invaders {
 
     private final Bullets normalBullets;
-    private final Random  random;
-    private final int     sizeX;
-    private final int     sizeY;
 
     public NormalInvaders(InvadersManager m) {
+        super();
         IBFactory factory = new IBFactory();
         normalBullets     = factory.create(BulletTypes.NORMAL);
-        sizeX             = UI.getUi().getWid();
-        sizeY             = UI.getUi().getHgt();
-        random            = new Random();
 
         m.addInvaders(this);
         m.getBulletsManager().addBullets(normalBullets);
@@ -32,9 +24,9 @@ public class NormalInvaders extends LinkedList<NormalInvader> implements Invader
             add(new NormalInvader(random.nextInt(sizeX - 30), 0, this));
         }
 
-        forEach(NormalInvader::updateInvader);
+        forEach(Invader::updateInvader);
         //remove dead invaders
-        removeIf(NormalInvader::isDead);
+        removeIf(Invader::isDead);
         //remove invaders that has gone off the stage
         removeIf(invader -> invader.getY() > sizeY);
     }

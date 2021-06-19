@@ -18,7 +18,7 @@ public class InvadersManager implements SGObserver {
         allInvaders    = new ArrayList<>();
         bulletsManager = sg.getBulletsManager();
 
-        //TODO tyr using invaders factory
+        //TODO try using invaders factory
         initAllInvaders();
     }
 
