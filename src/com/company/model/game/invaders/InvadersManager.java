@@ -12,22 +12,22 @@ import java.util.Random;
 public class InvadersManager implements SGObserver {
 
     private final LinkedList<Invader> invaders;
-    private final Bullets             normalBullets;
-    private final Random              random;
 
+    //TODO fix bullets related code
+    private final Random              random;
     private final int                 sizeX;
     private final int                 sizeY;
+
+    private final InvaderFactory      factory;
 
 
     public InvadersManager(StateGame sg) {
         sg.addObserver(this);
 
-        //create bullets and register it
-        normalBullets = new IBFactory().create(BulletTypes.NORMAL);
-        sg.getBulletsManager().addBullets(normalBullets);
-
         invaders = new LinkedList<>();
         random = new Random();
+
+        factory = new InvaderFactory(sg.getBulletsManager());
 
         sizeX = UI.getUi().getWid();
         sizeY = UI.getUi().getHgt();
@@ -44,7 +44,7 @@ public class InvadersManager implements SGObserver {
 
     private void addInvader() {
         if (random.nextInt(40) == 1) {
-            invaders.add(new NormalInvader(random.nextInt(sizeX - 30) , 0, normalBullets));
+            invaders.add(factory.create(random.nextInt(sizeX - 30), 0));
         }
     }
 
