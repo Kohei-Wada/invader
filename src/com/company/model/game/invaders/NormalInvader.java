@@ -1,56 +1,17 @@
 package com.company.model.game.invaders;
 
-import com.company.model.game.bullets.*;
+import com.company.model.game.bullets.Bullet;
+import com.company.model.game.bullets.Bullets;
 import com.company.model.game.player.Player;
 
 import java.awt.*;
 
-public class NormalInvaders extends Invaders {
-
-    private final Bullets normalBullets;
-
-    public NormalInvaders(InvadersManager m) {
-        super();
-        IBFactory factory = new IBFactory();
-        normalBullets     = factory.create(BulletTypes.NORMAL);
-        m.addInvaders(this);
-        m.getBulletsManager().addBullets(normalBullets);
-    }
-
-    @Override
-    public void updateInvaders() {
-        if (random.nextInt(40) == 1) {
-            add(new NormalInvader(random.nextInt(sizeX - 30), 0, this));
-        }
-
-        forEach(Invader::updateInvader);
-        //remove dead invaders
-        removeIf(Invader::isDead);
-        //remove invaders that has gone off the stage
-        removeIf(invader -> invader.getY() > sizeY);
-    }
-
-    @Override
-    public boolean bulletHitsInvader(Bullet b) {
-        return stream().anyMatch(i -> i.bulletHitInvader(b));
-    }
-
-    @Override
-    public boolean invaderHitPlayer(Player p) {
-        return stream().anyMatch(i -> i.hitPlayer(p));
-    }
-
-    public Bullets getNormalInvaderBullets() {
-        return normalBullets;
-    }
-}
-
 class NormalInvader extends Invader {
     private final Bullets normalBullets;
 
-    public NormalInvader(int x, int y, NormalInvaders invaders) {
+    public NormalInvader(int x, int y, Bullets bullets) {
         super(x, y, 1, 30);
-        normalBullets = invaders.getNormalInvaderBullets();
+        normalBullets = bullets;
     }
 
     private void firingBullet() {
