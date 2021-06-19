@@ -30,7 +30,7 @@ public class InvadersManager implements SGObserver {
         return allInvaders.stream().anyMatch(i -> i.invaderHitPlayer(p));
     }
 
-    public boolean bulletHistInvader(Bullet b) {
+    public boolean bulletHitsInvader(Bullet b) {
         return allInvaders.stream().anyMatch(i -> i.bulletHitsInvader(b));
     }
 

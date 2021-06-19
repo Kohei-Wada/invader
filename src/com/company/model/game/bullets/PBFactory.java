@@ -36,7 +36,7 @@ public class PBFactory {
                 void updateBullets() {
                     bullets.forEach(Bullet::updateBullet);
                     //remove bullets that has hit to invader
-                    bullets.removeIf(invadersManager::bulletHistInvader);
+                    bullets.removeIf(invadersManager::bulletHitsInvader);
                     //remove bullets that has gone off the stage
                     bullets.removeIf(b -> b.getY() < 0);
                 }
@@ -84,7 +84,7 @@ public class PBFactory {
                 void updateBullets() {
                     bullets.forEach(Bullet::updateBullet);
                     //remove bullets that has hit to invader
-                    bullets.removeIf(invadersManager::bulletHistInvader);
+                    bullets.removeIf(invadersManager::bulletHitsInvader);
                     //remove bullets that has gone off the stage
                     bullets.removeIf(b -> b.getY() < 0);
                 }

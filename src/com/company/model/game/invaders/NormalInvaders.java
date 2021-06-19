@@ -13,7 +13,6 @@ public class NormalInvaders extends Invaders {
         super();
         IBFactory factory = new IBFactory();
         normalBullets     = factory.create(BulletTypes.NORMAL);
-
         m.addInvaders(this);
         m.getBulletsManager().addBullets(normalBullets);
     }
@@ -55,9 +54,8 @@ class NormalInvader extends Invader {
     }
 
     private void firingBullet() {
-        if (random.nextInt(20) == 1) {
+        if (random.nextInt(20) == 1)
             normalBullets.addBullet(x + 12, y + 5);
-        }
     }
 
     @Override
@@ -93,7 +91,6 @@ class NormalInvader extends Invader {
             }
         }
     }
-
 
     //collision detection
     @Override
