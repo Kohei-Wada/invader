@@ -12,12 +12,9 @@ import java.util.Random;
 public class InvadersManager implements SGObserver {
 
     private final LinkedList<Invader> invaders;
-
-    //TODO fix bullets related code
     private final Random              random;
     private final int                 sizeX;
     private final int                 sizeY;
-
     private final InvaderFactory      factory;
 
 
@@ -44,7 +41,7 @@ public class InvadersManager implements SGObserver {
 
     private void addInvader() {
         if (random.nextInt(40) == 1) {
-            invaders.add(factory.create(random.nextInt(sizeX - 30), 0));
+            invaders.add(factory.create(InvaderTypes.NORMAl, BulletTypes.SHOTGUN, random.nextInt(sizeX - 30), 0));
         }
     }
 

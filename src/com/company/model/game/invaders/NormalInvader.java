@@ -8,15 +8,25 @@ import java.awt.*;
 
 class NormalInvader extends Invader {
     private final Bullets bullets;
+    private final int     bulletInterval;
+    private int intervalCount;
 
     public NormalInvader(int x, int y, Bullets bullets) {
         super(x, y, 1, 30);
         this.bullets = bullets;
+        this.bulletInterval = 0;
+        this.intervalCount = 0;
     }
 
     private void firingBullet() {
-        if (random.nextInt(20) == 1)
-            bullets.addBullet(x + 12, y + 5);
+        if (intervalCount > 0) {
+            --intervalCount;
+        }
+        else {
+            if (random.nextInt(20) == 1)
+                bullets.addBullet(x + 12, y + 5);
+            intervalCount = bulletInterval;
+        }
     }
 
     @Override
