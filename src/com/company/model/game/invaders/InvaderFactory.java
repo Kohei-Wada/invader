@@ -12,7 +12,6 @@ public class InvaderFactory {
     private final Bullets        shotgunBullets;
 
 
-
     public InvaderFactory(BulletsManager manager) {
         bulletsManager = manager;
         bulletFactory  = new IBFactory();

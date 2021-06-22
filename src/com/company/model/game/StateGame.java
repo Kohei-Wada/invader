@@ -17,6 +17,8 @@ public class StateGame extends State {
     private final BulletsManager        bulletsManager;
     private final InvadersManager       invadersManager;
 
+    private boolean                     active;
+
     public StateGame(Model m) {
         super(m);
 
@@ -30,6 +32,7 @@ public class StateGame extends State {
         bulletsManager  = new BulletsManager(this);
         invadersManager = new InvadersManager(this);
         player          = new Player(this);
+        active          = true;
     }
 
     public InvadersManager getInvadersManager() {
@@ -40,6 +43,10 @@ public class StateGame extends State {
         return bulletsManager;
     }
 
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     public void addObserver(SGObserver sgo) {
         observers.add(sgo);
     }
@@ -47,13 +54,12 @@ public class StateGame extends State {
     @Override
     public void stateUpdate(Model model) {
 
-        if (!player.isDead()) {
+        if (active) {
             parseKey();
             observers.forEach(v -> v.updateSGO(this));
         } else {
             model.setCurrentState(new StateGameOver(model));
         }
-
     }
 
     @Override

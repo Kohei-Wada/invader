@@ -15,7 +15,6 @@ public class Player implements SGObserver {
     private final int             stageX;
     private final int             stageY;
 
-    private boolean               dead;
     private int                   hp;
     private int                   x;
     private int                   y;
@@ -23,6 +22,7 @@ public class Player implements SGObserver {
     private Bullets               currentBullets;
 
 
+    private final StateGame       stateGame;
     private final InvadersManager invadersManager;
     private final BulletsManager  bulletsManager;
 
@@ -38,9 +38,9 @@ public class Player implements SGObserver {
         x       = stageX / 2;
         y       = stageY / 3 * 2;
         hp      = 1;
-        dead    = false;
         counter = 0;
 
+        stateGame       = sg;
         bulletsManager  = sg.getBulletsManager();
         invadersManager = sg.getInvadersManager();
 
@@ -85,13 +85,9 @@ public class Player implements SGObserver {
         }
     }
 
-    public boolean isDead() {
-        return dead;
-    }
-
     private void damaged() {
         if (--hp == 0)
-            dead = true;
+            stateGame.setActive(false);
     }
 
     private void setCurrentBullets(Bullets bs) {

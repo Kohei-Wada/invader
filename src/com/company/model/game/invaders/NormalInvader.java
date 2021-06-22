@@ -10,6 +10,7 @@ class NormalInvader extends Invader {
     private final Bullets bullets;
     private final int     bulletInterval;
     private int intervalCount;
+    private final int vy = 5;
 
     public NormalInvader(int x, int y, Bullets bullets) {
         super(x, y, 1, 30);
@@ -52,7 +53,7 @@ class NormalInvader extends Invader {
     @Override
     public void updateInvader() {
         if (hp != 0) {
-            y += 5;
+            y += vy;
             drawInvader();
             firingBullet();
         } else if (!dead) {

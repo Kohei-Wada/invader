@@ -6,6 +6,7 @@ public abstract class State {
     protected Keys  keys;
     protected Model model;
 
+
     public State(Model m) {
         model = m;
         keys = model.getKeys();
